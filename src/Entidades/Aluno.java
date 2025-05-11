@@ -1,6 +1,10 @@
-package Entidades;
+package entidades;
 
-public class Aluno {
+
+import java.io.Serializable;
+
+public class Aluno implements Serializable{
+	private static final long serialVerionUID = 1L;
 	 private long matricula;
 	 private String nome;
 	 private String curso;
