@@ -15,7 +15,7 @@ public class Turma implements Serializable {
 	private String sala;
 	private double horario;
 	private int capMaxAluno;
-	private List<HashMap<Long, Aluno>> alunosTurma;// criando um atributo que receba a lista de alunos. -> vou precisar
+	private HashMap<Long, Aluno> alunos;// criando um atributo que receba a lista de alunos. -> vou precisar
 													// de um metodo pra adicionar alunos em turmas, DAOTurma???
 
 	public Turma(String disciplina, String professor, double semestre, boolean presencial, String sala, double horario,
@@ -29,7 +29,11 @@ public class Turma implements Serializable {
 		this.horario = horario;
 		this.capMaxAluno = capMaxAluno;
 	}
-
+	
+	public HashMap<Long, Aluno> getAlunos() {
+		return alunos;
+	}
+	
 	public String getDisciplina() {
 		return disciplina;
 	}

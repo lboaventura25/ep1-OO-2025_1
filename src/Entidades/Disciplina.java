@@ -1,6 +1,6 @@
 package entidades;
 
-//import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.io.Serializable;
@@ -11,7 +11,7 @@ public class Disciplina implements Serializable {
 	private int codigo;
 	private int horas;
 	private String[] preRequisitos;
-	private List<HashMap<Long, Turma>> turmasNaDisciplina;// como eu crio um metodo pra adicionar turmas nessa lista???
+	private HashMap<Long, Turma> turmas;// como eu crio um metodo pra adicionar turmas nessa lista???
 															// DAO???
 
 	public Disciplina(int codigo, int horas, String[] preRequisitos) {
