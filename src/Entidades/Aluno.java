@@ -3,8 +3,11 @@ package entidades;
 
 import java.io.Serializable;
 
-public class Aluno implements Serializable{
-	private static final long serialVerionUID = 1L;
+public class Aluno extends Entidade{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	 private long matricula;
 	 private String nome;
 	 private String curso;
