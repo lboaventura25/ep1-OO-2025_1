@@ -12,7 +12,7 @@ public interface IDao<T extends Entidade> {// Generec's sendo T algum dado do ti
 	public boolean excluir ( Integer key,HashMap<Integer, T> listaManipulada);// retorna um true ou false se for excluid ou nao 
 	// passa quem eu quero tirar e de onde eu quero tirar 
 
-	public T alterar ( T entidade,HashMap<Integer, T> listaManipulada);// retorno quem eu alterei
+	public T alterar ( T entidade,HashMap<Integer, T> listaManipulada, String campoAlterado, String alteração);// retorno quem eu alterei
 	// passa quem eu quero mudar e onde ele está
 
 	public T obter(String nome); // retorna quem eu quero achar 

@@ -58,8 +58,44 @@ public class AlunoDao implements IAlunoDao {
 	}
 
 	@Override
-	public Aluno alterar(Aluno entidade, HashMap<Integer, Aluno> listaManipulada) {
-		// TODO Auto-generated method stub
+	public Aluno alterar(Aluno entidade, HashMap<Integer, Aluno> listaManipulada, String campoAlterado,
+			String alteração) {
+		Aluno elemento = listaManipulada.get(entidade.getMatricula());
+		// a matricula vai ser a chave, logo passando a matricula eu retorno a chave
+		// dele.
+		if (listaManipulada.containsValue(entidade)) {// se a lista conter algum valor desse
+			if (campoAlterado == "Matricula") {
+				// aqui é melhor pedir pra ele adicionar outro aluno com outra chave, sendo a
+				// nova matricula
+				return elemento;
+			}
+			if (campoAlterado == "Curso") {
+				elemento.setCurso(alteração);
+				return elemento;
+			}
+			if (campoAlterado == "Nome") {
+				elemento.setNome(alteração);
+				return elemento;
+
+			}
+			if (campoAlterado == "Especial") {
+				if (alteração != "true" || alteração !="false") {// se o valor nao for true ou false;
+					System.out.println("alteração não válida");
+					System.out.println("aceita-se somente a String 'true' ou 'false'");
+				}
+				else{// se for igual a tru ou false;
+					boolean alteraçãoBoolean =Boolean.parseBoolean(alteração);
+				elemento.setEspecial(alteraçãoBoolean);
+				return elemento;
+				}
+				
+
+			}
+
+		} else {
+			System.out.println("não existe esse elemento em tal lista");
+			return null;
+		}
 		return null;
 	}
 
