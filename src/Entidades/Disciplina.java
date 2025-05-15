@@ -1,11 +1,11 @@
 package entidades;
 
-import java.util.ArrayList;
+/* import java.util.ArrayList; */
 import java.util.HashMap;
-import java.util.List;
-import java.io.Serializable;
+/* import java.util.List; */
+/* import java.io.Serializable; */
 
-public class Disciplina implements Serializable {
+public class Disciplina extends Entidade {
 	private static final long serialVerionUID = 1L;
 
 	private int codigo;

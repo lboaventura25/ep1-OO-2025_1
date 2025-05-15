@@ -1,7 +1,7 @@
 package servicos;
 
 import persistencia.BancoDados;
-import persistencia.dao.Daos;
+import persistencia.daoEntidades.Daos;
 import entidades.Aluno;
 
 public class Main_teste {// pra testar eu preciso executar por aqui;

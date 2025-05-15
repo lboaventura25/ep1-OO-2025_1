@@ -1,4 +1,4 @@
-package persistencia.dao;
+package persistencia.daoEntidades;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +12,8 @@ public class Daos {
 	}
 
 	public static void listarCompleta(HashMap<Integer, Object> listaManipulada) {
-		for(Map.Entry<Integer, Object> entra: listaManipulada.entrySet()) {
-			System.out.println("chave:"+entra.getKey()+" valor:"+entra.getValue());
+		for(Map.Entry<Integer, Object> elemento: listaManipulada.entrySet()) {
+			System.out.println("chave:"+elemento.getKey()+" valor:"+elemento.getValue());
 		}
 		
 	}

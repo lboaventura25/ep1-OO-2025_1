@@ -1,9 +1,9 @@
 package entidades;
 
 
-import java.io.Serializable;
+/* import java.io.Serializable; */
 
-public class Professor implements Serializable{
+public class Professor extends Entidade{
 	private static final long serialVerionUID = 1L;
 	
 	private long id;

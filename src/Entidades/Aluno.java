@@ -1,7 +1,7 @@
 package entidades;
 
 
-import java.io.Serializable;
+
 
 public class Aluno extends Entidade{
 	/**
