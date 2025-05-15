@@ -74,3 +74,4 @@ O enunciado do trabalho pode ser encontrado aqui:
 ## Contato
 
 - [Opcional: E-mail pessoal do aluno.]
+   gabriel.otacio135@gmail.com

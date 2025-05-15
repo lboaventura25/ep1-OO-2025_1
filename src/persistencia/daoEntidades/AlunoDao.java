@@ -70,22 +70,29 @@ public class AlunoDao implements IAlunoDao {
 				return elemento;
 			}
 			if (campoAlterado == "Curso") {
+				System.out.println("tentando alterar o Curso");
 				elemento.setCurso(alteração);
+				System.out.println("curso alterado");
 				return elemento;
 			}
 			if (campoAlterado == "Nome") {
+				System.out.println("tentando alterar o nome");
 				elemento.setNome(alteração);
+				System.out.println("nome alterado com sucesso");
 				return elemento;
+				// se eu for disponibilizar esse metodo eu preciso pensar em outra forma de chamr os objetos Aluno, que nao seja pelo o nome deles
+				// talvez "aluno1", "aluno2"... e assim por diante.
 
 			}
-			if (campoAlterado == "Especial") {
-				if (alteração != "true" || alteração !="false") {// se o valor nao for true ou false;
+			if (campoAlterado == "Especial") { // TODO verificar esse metodo;
+				System.out.println("tentando alterar o Especial");
+				if (alteração != "true" | alteração !="false") {// se o valor nao for true ou false;
 					System.out.println("alteração não válida");
-					System.out.println("aceita-se somente a String 'true' ou 'false'");
+					System.out.println("aceita-se somente a String 'True' ou 'False'");
 				}
 				else{// se for igual a tru ou false;
-					boolean alteraçãoBoolean =Boolean.parseBoolean(alteração);
-				elemento.setEspecial(alteraçãoBoolean);
+					boolean alteraçãoBoolean = Boolean.parseBoolean(alteração);
+					elemento.setEspecial(alteraçãoBoolean);
 				return elemento;
 				}
 				
@@ -109,6 +116,12 @@ public class AlunoDao implements IAlunoDao {
 	public boolean contains(Integer key, HashMap<Integer, Aluno> listaManipulada) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public boolean verificaDuplicidade() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'verificaDuplicidade'");
 	}
 
 	// @Override

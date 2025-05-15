@@ -15,22 +15,28 @@ public class Main_teste {// pra testar eu preciso executar por aqui;
 
 		System.out.println("iniciei meu BD e meu daoALuno");
 
-		Aluno Gabriel = new Aluno(242004706, "Gabriel Vieira", "Eng.software", false);// instanciando meu aluno
-		Aluno Teresa = new Aluno(456789123, "Maria Teresa", "Psicologia", false);// instanciando meu aluno
-		
-		alunoDao.incluir(Gabriel, Gabriel.getMatricula(), BancoDados.getAlunosGeral());// adicionando ma lista alunosGeral
-		alunoDao.incluir(Teresa, Teresa.getMatricula(), BancoDados.getAlunosGeral());
+		Aluno aluno1 = new Aluno(242004706, "Gabriel Vieira", "Eng.software", false);// instanciando meu aluno
+		Aluno aluno2 = new Aluno(456789123, "Maria Teresa", "Psicologia", false);// instanciando meu aluno
+		// sera se a pessoa que vai escolher o nome do objeto?? acho que não né. 
+
+		alunoDao.incluir(aluno1, aluno1.getMatricula(), BancoDados.getAlunosGeral());// adicionando ma lista
+																						// alunosGeral
+		alunoDao.incluir(aluno2, aluno2.getMatricula(), BancoDados.getAlunosGeral());
 		alunoDao.listar(BancoDados.getAlunosGeral());// listando a lista alunos geral
-		alunoDao.excluir(Gabriel.getMatricula(), BancoDados.getAlunosGeral());
-		alunoDao.listar(BancoDados.getAlunosGeral());
-		
-		
+		alunoDao.alterar(aluno2, BancoDados.getAlunosGeral(), "Curso", "Pedagogia");
+		alunoDao.alterar(aluno2, BancoDados.getAlunosGeral(), "Especial", "True");
+		alunoDao.alterar(aluno2, BancoDados.getAlunosGeral(), "Nome", "Camila");  // TODO ver o porque desse metodo
+																					// alterar(especial) nao ta
+																					// funcionando
+		alunoDao.listar(BancoDados.getAlunosGeral());// listando a lista alunos geral
+
 		BancoDados.persistir(BancoDados.getAlunosGeral(), "alunoDB.txt");
-		/* BancoDados.persistir(BancoDados.getProfessoresGeral(), "professores.txt");
-		BancoDados.persistir(BancoDados.getTurmasGeral(), "turmas.txt"); */
+		/*
+		 * BancoDados.persistir(BancoDados.getProfessoresGeral(), "professores.txt");
+		 * BancoDados.persistir(BancoDados.getTurmasGeral(), "turmas.txt");
+		 */
 		BancoDados.persistir(BancoDados.getAlunosGeral(), "disciplina.txt");
-		
-		
+
 	}
 
 }
