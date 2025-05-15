@@ -15,8 +15,8 @@ public class AlunoDao implements IAlunoDao {
 	public Aluno incluir(Aluno aluno, Integer key, HashMap<Integer, Aluno> listaManipulada) {
 		if (listaManipulada != null) {
 			listaManipulada.put(key, aluno);
-			System.out.println("Objeto: " + aluno.getNome());
-			System.out.println("adicionado com sucesso");
+			System.out.println("Objeto: " + aluno.getNome() + " adicionado com sucesso");
+			System.out.println("-----------------");
 		} else {
 			System.out.println("Lista vazia ou não existe");
 		}
@@ -24,17 +24,37 @@ public class AlunoDao implements IAlunoDao {
 	}
 
 	@Override
-	public List<Aluno> listar(HashMap<Integer, Aluno> listaExibida) {// aqui pode ser duas listas diferentes por isso tenho que ter um argumento pra isso 
-		for(Map.Entry<Integer, Aluno> elemento : listaExibida.entrySet()) {
-			System.out.println("chave:"+elemento.getKey()+" valor:"+elemento.getValue());
+	public List<Aluno> listar(HashMap<Integer, Aluno> listaExibida) {// aqui pode ser duas listas diferentes por isso
+																		// tenho que ter um argumento pra isso
+		// listando cada objeto da lista
+		System.out.println("Na lista que tem todos os alunos matriculados tem os tais alunos:");
+		System.out.println("------------");
+		for (Map.Entry<Integer, Aluno> elemento : listaExibida.entrySet()) {
+
+			System.out.println("objeto: " + elemento.getValue());
+			System.out.println("chave:" + elemento.getKey());
+			System.out.println("nome do aluno:" + elemento.getValue().getNome());
+			System.out.println("matricula do aluno:" + elemento.getValue().getMatricula());
+			System.out.println("curso:" + elemento.getValue().getCurso());
+			System.out.println("É especial:" + elemento.getValue().isEspecial());
+			System.out.println("---------------");
+
 		}
 		return null;
 	}
 
 	@Override
-	public boolean excluir(Aluno entidade, HashMap<Integer, Aluno> listaManipulada) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean excluir(Integer key, HashMap<Integer, Aluno> listaManipulada) {
+		if (listaManipulada.containsKey(key)) {// verificando se existe esse objeto na lista
+			System.out.println("objeto de chave: " + key + " removido");
+			System.out.println("objeto de valor: " + listaManipulada.get(key) + " removido");
+			listaManipulada.remove(key);
+			return true;
+		} else {
+			System.out.println("esse objeto nao existe nessa  lista");
+			return false;
+		} // achar um valor pela a chave
+
 	}
 
 	@Override
@@ -49,10 +69,16 @@ public class AlunoDao implements IAlunoDao {
 		return null;
 	}
 
-//	@Override
-//	public Aluno obter(long identificador) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public boolean contains(Integer key, HashMap<Integer, Aluno> listaManipulada) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	// @Override
+	// public Aluno obter(long identificador) {
+	// // TODO Auto-generated method stub
+	// return null;
+	// }
 
 }
