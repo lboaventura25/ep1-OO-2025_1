@@ -21,7 +21,10 @@ public class Main_teste {// pra testar eu preciso executar por aqui;
 		alunoDao.listar(BancoDados.getAlunosGeral());
 		
 		
-		BancoDados.persistir(BancoDados.getAlunosGeral(), "alunosDB.txt");
+		BancoDados.persistir(BancoDados.getAlunosGeral(), "alunoDB.txt");
+		/* BancoDados.persistir(BancoDados.getProfessoresGeral(), "professores.txt");
+		BancoDados.persistir(BancoDados.getTurmasGeral(), "turmas.txt"); */
+		BancoDados.persistir(BancoDados.getAlunosGeral(), "disciplina.txt");
 		
 		
 	}

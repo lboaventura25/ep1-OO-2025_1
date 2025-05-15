@@ -2,10 +2,10 @@ package entidades;
 
 //import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.io.Serializable;
 
-public class Turma implements Serializable {
+
+
+public class Turma extends Entidade {
 	private static final long serialVerionUID = 1L;
 
 	private String disciplina;
@@ -16,7 +16,7 @@ public class Turma implements Serializable {
 	private double horario;
 	private int capMaxAluno;
 	private HashMap<Long, Aluno> alunos;// criando um atributo que receba a lista de alunos. -> vou precisar
-													// de um metodo pra adicionar alunos em turmas, DAOTurma???
+	// TODO de um metodo pra adicionar alunos em turmas, DAOTurma???
 
 	public Turma(String disciplina, String professor, double semestre, boolean presencial, String sala, double horario,
 			int capMaxAluno) {

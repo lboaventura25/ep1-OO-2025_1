@@ -17,30 +17,33 @@ import entidades.Professor;
 import entidades.Turma;
 import entidades.Entidade;
 
-public class BancoDados <T extends Entidade>{
+public class BancoDados<T extends Entidade> {
 	static final String PATH_BD = "C:\\Users\\Gabriel\\eclipse-workspace\\trabalho_OO\\bin\\Persistencia\\";
 	// endereço com barra invertada;
 
 	private static HashMap<Integer, Disciplina> disciplinaGeral = new HashMap<Integer, Disciplina>();
 
 	private static HashMap<Integer, Aluno> alunosGeral = new HashMap<Integer, Aluno>();
-	// lista que tem todos osalunos:<matricula do aluno,Aluno>	
+	// lista que tem todos osalunos:<matricula do aluno,Aluno>
 
 	// private static HashMap<Integer, Aluno> alunosPorTurma = new HashMap<Integer,
 	// Aluno>();// lista que tem oa alunos porturma:<código da turma,Aluno>
 	// ->ja inicializei ela em Turma
-	
+
 	private static HashMap<Integer, Turma> turmasGeral = new HashMap<Integer, Turma>();
-	// TODO tem como eu colocar dois tipos de dados em uma lista? -> lista que vai ter
+	// TODO tem como eu colocar dois tipos de dados em uma lista? -> lista que vai
+	// ter
 	// todas as turmas: <codigoda turma, Turma> //
 
-	// private static HashMap<Integer, Turma> turmaPorDisciplina = new HashMap<Integer,
+	// private static HashMap<Integer, Turma> turmaPorDisciplina = new
+	// HashMap<Integer,
 	// Turma>();// lista que vai ter as turmas
-	// ->ja inicalizaei ela em Disciplinas // por disciplina:<codigo dadisciplina, Turma>
-	
+	// ->ja inicalizaei ela em Disciplinas // por disciplina:<codigo dadisciplina,
+	// Turma>
+
 	private static HashMap<Integer, Professor> professoresGeral = new HashMap<Integer, Professor>();
 	// lista que vai ter todos os professores: <id do professor, Professor>
-	
+
 	// TODO como fazer uma lista que tenha os professores por Disciplinas???
 	static {
 		// chamo o preparar arquivo dentro do bloco estatico? acho que sim né.
@@ -51,8 +54,9 @@ public class BancoDados <T extends Entidade>{
 
 		// porque eu preciso desse bloco? n é so chamar o metodo de carregar(ler) e
 		// salvar(escrever) na classe onde eu quero executalas?
-		// esse blco vai carregar as carregar as coisas como primiera coisa a se fazer e quero isso pras minhas listas,
-		//logo.... ele vai estar aqui
+		// esse blco vai carregar as carregar as coisas como primiera coisa a se fazer e
+		// quero isso pras minhas listas,
+		// logo.... ele vai estar aqui
 
 	}
 
@@ -62,18 +66,17 @@ public class BancoDados <T extends Entidade>{
 		 * preparaArquivo(nomeArquivo); preparaArquivo(nomeArquivo);
 		 * preparaArquivo(nomeArquivo); preparaArquivo(nomeArquivo);
 		 */
-		
-		//alunosGeral = desserializarLista(), nao entedi, alunos geral nao precisaria ser um argumento de um método?
-		 
-		
-		
+
+		// alunosGeral = desserializarLista(), nao entedi, alunos geral nao precisaria
+		// ser um argumento de um método?
+
 	}
 
 	private static void preparaArquivo(String nomeArquivo) {// vaidaArquivo
 		if (!validaArquivo(PATH_BD + nomeArquivo)) {// se ele nao existir
 			try {
 				criaArquivo(PATH_BD + nomeArquivo);// cria
-			} catch (IOException e) {// se der esso, não sei 
+			} catch (IOException e) {// se der esso, não sei
 				e.printStackTrace();
 			}
 		}
@@ -86,21 +89,21 @@ public class BancoDados <T extends Entidade>{
 		} catch (Exception e) {
 			System.out.println("Erro ao serializar o HashMap: " + e.getMessage());
 		}
-		
+	}
 
+	public static void ler (HashMap<Integer, Object> listaObjetos, String nomeArquivoHash){
+		//TODO conferir esse metodo
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(PATH_BD + nomeArquivoHash))) {
 
-		//TODO ver esse metodo pra ler os arquivos
-		/* try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(PATH_BD + nomeArquivoHash))) {
-
-			HashMap<Integer, Object> listaObjetos = (HashMap<Integer, Object>) ois.readObject();// lendo o arquivo
+			HashMap<Integer, Object> listHashMap = (HashMap<Integer, Object>) ois.readObject();// lendo o arquivo
 
 		} catch (IOException | ClassNotFoundException e) {// se o arquivo n existir criar um arquivo, ele precisa ser
 															// ja// um hashMap? acho que sim né.
-			persistir(null, nomeArquivoHash);
+			persistir(null, nomeArquivoHash);}
 
-		} */
+		} 
 
-	}
+	
 
 	private static boolean validaArquivo(String nomeArquivo) {
 
@@ -115,7 +118,7 @@ public class BancoDados <T extends Entidade>{
 
 	}
 
-	public static HashMap<Integer,Aluno> getAlunosGeral() {
+	public static HashMap<Integer, Aluno> getAlunosGeral() {
 		return alunosGeral;
 	}
 

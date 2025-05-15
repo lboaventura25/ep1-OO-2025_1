@@ -24,7 +24,7 @@ public class AlunoDao implements IAlunoDao {
 	}
 
 	@Override
-	public List<Aluno> listar(HashMap<Integer, Aluno> listaExibida) {
+	public List<Aluno> listar(HashMap<Integer, Aluno> listaExibida) {// aqui pode ser duas listas diferentes por isso tenho que ter um argumento pra isso 
 		for(Map.Entry<Integer, Aluno> elemento : listaExibida.entrySet()) {
 			System.out.println("chave:"+elemento.getKey()+" valor:"+elemento.getValue());
 		}
