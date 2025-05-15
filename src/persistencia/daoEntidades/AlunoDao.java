@@ -15,7 +15,7 @@ public class AlunoDao implements IAlunoDao {
 	public Aluno incluir(Aluno aluno, Integer key, HashMap<Integer, Aluno> listaManipulada) {
 		if (listaManipulada != null) {
 			listaManipulada.put(key, aluno);
-			System.out.println("Objeto: " + aluno);
+			System.out.println("Objeto: " + aluno.getNome());
 			System.out.println("adicionado com sucesso");
 		} else {
 			System.out.println("Lista vazia ou não existe");

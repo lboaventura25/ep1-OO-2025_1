@@ -15,9 +15,10 @@ import entidades.Aluno;
 import entidades.Disciplina;
 import entidades.Professor;
 import entidades.Turma;
+import entidades.Entidade;
 
-public class BancoDados {
-	static final String PATH_BD = "C:\\Users\\Gabriel\\eclipse-workspace\\trabalho_OO\\bin\\Persistencia\\arquivosPersistidos\\";
+public class BancoDados <T extends Entidade>{
+	static final String PATH_BD = "C:\\Users\\Gabriel\\eclipse-workspace\\trabalho_OO\\bin\\Persistencia\\";
 	// endereço com barra invertada;
 
 	private static HashMap<Integer, Disciplina> disciplinaGeral = new HashMap<Integer, Disciplina>();
@@ -73,21 +74,23 @@ public class BancoDados {
 			try {
 				criaArquivo(PATH_BD + nomeArquivo);// cria
 			} catch (IOException e) {// se der esso, não sei 
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
 
-	public static void persistir(HashMap<Integer, Object> nomeHash, String nomeArquivoHash) {
+	public static void persistir(HashMap<Integer, Aluno> nomeHash, String nomeArquivoHash) {
 		try (ObjectOutputStream oss = new ObjectOutputStream(new FileOutputStream(PATH_BD + nomeArquivoHash))) {
 
 			oss.writeObject(nomeHash);// escrevendo o arquivo
 		} catch (Exception e) {
 			System.out.println("Erro ao serializar o HashMap: " + e.getMessage());
 		}
+		
 
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(PATH_BD + nomeArquivoHash))) {
+
+		//TODO ver esse metodo pra ler os arquivos
+		/* try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(PATH_BD + nomeArquivoHash))) {
 
 			HashMap<Integer, Object> listaObjetos = (HashMap<Integer, Object>) ois.readObject();// lendo o arquivo
 
@@ -95,7 +98,7 @@ public class BancoDados {
 															// ja// um hashMap? acho que sim né.
 			persistir(null, nomeArquivoHash);
 
-		}
+		} */
 
 	}
 

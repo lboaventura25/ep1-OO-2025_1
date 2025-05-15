@@ -8,13 +8,13 @@ public class Aluno extends Entidade{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	 private long matricula;
+	 private Integer matricula;
 	 private String nome;
 	 private String curso;
 	 private boolean especial;
 	 
 	 
-	public Aluno(long matricula, String nome, String curso, boolean especial) {
+	public Aluno(Integer matricula, String nome, String curso, boolean especial) {
 		super();
 		this.matricula = matricula;
 		this.nome = nome;
@@ -23,11 +23,11 @@ public class Aluno extends Entidade{
 	}
 
 
-	public long getMatricula() {
+	public Integer getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(long matricula) {
+	public void setMatricula(Integer matricula) {
 		this.matricula = matricula;
 	}
 
