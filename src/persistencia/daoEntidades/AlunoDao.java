@@ -64,9 +64,17 @@ public class AlunoDao implements IAlunoDao {
 		// a matricula vai ser a chave, logo passando a matricula eu retorno a chave
 		// dele.
 		if (listaManipulada.containsValue(entidade)) {// se a lista conter algum valor desse
-			if (campoAlterado == "Matricula") {
-				// aqui é melhor pedir pra ele adicionar outro aluno com outra chave, sendo a
-				// nova matricula
+			if (campoAlterado == "Matricula") {// retorno o velho e o novo 
+					System.out.println("tentando alterar matricula");
+					Integer novaMatricula = Integer.parseInt(alteração) ;
+					String velhoNome = elemento.getNome();
+					String velhoCurso = elemento.getCurso();
+					boolean velhoEspecial = elemento.isEspecial();
+					Aluno novoAluno = new Aluno(novaMatricula, velhoNome, velhoCurso, velhoEspecial);// criei outro aluno
+					
+					excluir(elemento.getMatricula(), listaManipulada);// excluindo o antigo elemento com a matricula velha.
+					incluir(novoAluno, novaMatricula, listaManipulada);// adicionando novo aluno na lista
+					System.out.println("matriucula alterada com sucesso");
 				return elemento;
 			}
 			if (campoAlterado == "Curso") {

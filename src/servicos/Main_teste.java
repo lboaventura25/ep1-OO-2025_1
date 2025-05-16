@@ -19,15 +19,15 @@ public class Main_teste {// pra testar eu preciso executar por aqui;
 		Aluno aluno2 = new Aluno(456789123, "Maria Teresa", "Psicologia", false);// instanciando meu aluno
 		// sera se a pessoa que vai escolher o nome do objeto?? acho que não né. 
 
-		alunoDao.incluir(aluno1, aluno1.getMatricula(), BancoDados.getAlunosGeral());// adicionando ma lista
+		alunoDao.incluir(aluno1, aluno1.getMatricula(), BancoDados.getAlunosGeral());// adicionando na lista
 																						// alunosGeral
 		alunoDao.incluir(aluno2, aluno2.getMatricula(), BancoDados.getAlunosGeral());
 		alunoDao.listar(BancoDados.getAlunosGeral());// listando a lista alunos geral
-		alunoDao.alterar(aluno2, BancoDados.getAlunosGeral(), "Curso", "Pedagogia");
-		alunoDao.alterar(aluno2, BancoDados.getAlunosGeral(), "Especial", "True");
-		alunoDao.alterar(aluno2, BancoDados.getAlunosGeral(), "Nome", "Camila");  // TODO ver o porque desse metodo
+		alunoDao.alterar(aluno2, BancoDados.getAlunosGeral(), "Curso", "Pedagogia");// TODO ver o porque desse metodo
 																					// alterar(especial) nao ta
 																					// funcionando
+		alunoDao.alterar(aluno1, BancoDados.getAlunosGeral(), "Matricula", "242015989");
+	
 		alunoDao.listar(BancoDados.getAlunosGeral());// listando a lista alunos geral
 
 		BancoDados.persistir(BancoDados.getAlunosGeral(), "alunoDB.txt");
