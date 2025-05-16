@@ -23,10 +23,10 @@ public class Main_teste {// pra testar eu preciso executar por aqui;
 																						// alunosGeral
 		alunoDao.incluir(aluno2, aluno2.getMatricula(), BancoDados.getAlunosGeral());
 		alunoDao.listar(BancoDados.getAlunosGeral());// listando a lista alunos geral
-		alunoDao.alterar(aluno2, BancoDados.getAlunosGeral(), "Curso", "Pedagogia");// TODO ver o porque desse metodo
+		//alunoDao.alterar(aluno2, BancoDados.getAlunosGeral(), "Curso", "Pedagogia");// TODO ver o porque desse metodo
 																					// alterar(especial) nao ta
 																					// funcionando
-		alunoDao.alterar(aluno1, BancoDados.getAlunosGeral(), "Matricula", "242015989");
+		alunoDao.obter("Gabriel Vieira", BancoDados.getAlunosGeral());
 	
 		alunoDao.listar(BancoDados.getAlunosGeral());// listando a lista alunos geral
 

@@ -15,10 +15,10 @@ public interface IDao<T extends Entidade> {// Generec's sendo T algum dado do ti
 	public T alterar ( T entidade,HashMap<Integer, T> listaManipulada, String campoAlterado, String alteração);// retorno quem eu alterei
 	// passa quem eu quero mudar e onde ele está
 
-	public T obter(String nome); // retorna quem eu quero achar 
+	//public T obter(String nome, HashMap<Integer,T> listaManipulada); // retorna quem eu quero achar 
 	// passa o nome de quem eu quero editar, nome ou matricula.
 
-	//public T obter(long identificador); // retorna que eu quero achar 
+	public T obter(Integer chave, HashMap<Integer,T> listaManipulada); // retorna que eu quero achar 
 
 	public List<T> listar(HashMap<Integer, T> listaExibida);// retornar a lista.
 

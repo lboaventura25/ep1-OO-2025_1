@@ -82,7 +82,8 @@ public class BancoDados<T extends Entidade> {
 		}
 	}
 
-	public static void persistir(HashMap<Integer, Aluno> nomeHash, String nomeArquivoHash) {
+
+	public static void persistir(HashMap<Integer, Aluno> nomeHash, String nomeArquivoHash) {//TODO reescrever esse metodo
 		try (ObjectOutputStream oss = new ObjectOutputStream(new FileOutputStream(PATH_BD + nomeArquivoHash))) {
 
 			oss.writeObject(nomeHash);// escrevendo o arquivo

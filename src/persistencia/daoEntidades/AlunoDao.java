@@ -64,17 +64,17 @@ public class AlunoDao implements IAlunoDao {
 		// a matricula vai ser a chave, logo passando a matricula eu retorno a chave
 		// dele.
 		if (listaManipulada.containsValue(entidade)) {// se a lista conter algum valor desse
-			if (campoAlterado == "Matricula") {// retorno o velho e o novo 
-					System.out.println("tentando alterar matricula");
-					Integer novaMatricula = Integer.parseInt(alteração) ;
-					String velhoNome = elemento.getNome();
-					String velhoCurso = elemento.getCurso();
-					boolean velhoEspecial = elemento.isEspecial();
-					Aluno novoAluno = new Aluno(novaMatricula, velhoNome, velhoCurso, velhoEspecial);// criei outro aluno
-					
-					excluir(elemento.getMatricula(), listaManipulada);// excluindo o antigo elemento com a matricula velha.
-					incluir(novoAluno, novaMatricula, listaManipulada);// adicionando novo aluno na lista
-					System.out.println("matriucula alterada com sucesso");
+			if (campoAlterado == "Matricula") {// retorno o velho e o novo
+				System.out.println("tentando alterar matricula");
+				Integer novaMatricula = Integer.parseInt(alteração);
+				String velhoNome = elemento.getNome();
+				String velhoCurso = elemento.getCurso();
+				boolean velhoEspecial = elemento.isEspecial();
+				Aluno novoAluno = new Aluno(novaMatricula, velhoNome, velhoCurso, velhoEspecial);// criei outro aluno
+
+				excluir(elemento.getMatricula(), listaManipulada);// excluindo o antigo elemento com a matricula velha.
+				incluir(novoAluno, novaMatricula, listaManipulada);// adicionando novo aluno na lista
+				System.out.println("matriucula alterada com sucesso");
 				return elemento;
 			}
 			if (campoAlterado == "Curso") {
@@ -88,22 +88,21 @@ public class AlunoDao implements IAlunoDao {
 				elemento.setNome(alteração);
 				System.out.println("nome alterado com sucesso");
 				return elemento;
-				// se eu for disponibilizar esse metodo eu preciso pensar em outra forma de chamr os objetos Aluno, que nao seja pelo o nome deles
+				// se eu for disponibilizar esse metodo eu preciso pensar em outra forma de
+				// chamr os objetos Aluno, que nao seja pelo o nome deles
 				// talvez "aluno1", "aluno2"... e assim por diante.
 
 			}
 			if (campoAlterado == "Especial") { // TODO verificar esse metodo;
 				System.out.println("tentando alterar o Especial");
-				if (alteração != "true" | alteração !="false") {// se o valor nao for true ou false;
+				if (alteração != "true" | alteração != "false") {// se o valor nao for true ou false;
 					System.out.println("alteração não válida");
 					System.out.println("aceita-se somente a String 'True' ou 'False'");
-				}
-				else{// se for igual a tru ou false;
+				} else {// se for igual a tru ou false;
 					boolean alteraçãoBoolean = Boolean.parseBoolean(alteração);
 					elemento.setEspecial(alteraçãoBoolean);
-				return elemento;
+					return elemento;
 				}
-				
 
 			}
 
@@ -114,11 +113,32 @@ public class AlunoDao implements IAlunoDao {
 		return null;
 	}
 
-	@Override
-	public Aluno obter(String nome) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	/*
+	 * @Override
+	 * public Aluno obter(String nome, HashMap<Integer,Aluno> listaManipulada) {
+	 * for( Map.Entry<Integer,Aluno> elemento : listaManipulada.entrySet()){
+	 * if (elemento.getValue().getNome() == nome) {// ele ta rodando esse if pra
+	 * todos e eu n queor isso
+	 * Aluno escolhido = elemento.getValue();
+	 * System.out.println(escolhido);
+	 * System.out.println(elemento.getValue().getNome()+" foi exibido");
+	 * System.out.println("---------------");
+	 * 
+	 * 
+	 * 
+	 * return escolhido;
+	 * 
+	 * }else{
+	 * System.out.println("este aluno nao se encontra em tal lista");
+	 * }
+	 * 
+	 * 
+	 * }
+	 * 
+	 * // TODO verificar esse metodo
+	 * return null;
+	 * }
+	 */
 
 	@Override
 	public boolean contains(Integer key, HashMap<Integer, Aluno> listaManipulada) {
@@ -132,10 +152,17 @@ public class AlunoDao implements IAlunoDao {
 		throw new UnsupportedOperationException("Unimplemented method 'verificaDuplicidade'");
 	}
 
-	// @Override
-	// public Aluno obter(long identificador) {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
+	@Override
+	public Aluno obter(Integer chave, HashMap<Integer, Aluno> listaManipulada) {
+		if (listaManipulada.containsKey(chave)) {
+			System.out.println(" achou "+ listaManipulada.get(chave));
+			return listaManipulada.get(chave);
+
+		} else {
+			System.out.println("o aluno vinculado a esta maticula nao esta nessa lista");
+		}
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
