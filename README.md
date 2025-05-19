@@ -9,10 +9,10 @@ O enunciado do trabalho pode ser encontrado aqui:
 
 ## Dados do Aluno
 
-- **Nome completo:** [Preencher aqui]
-- **Matrícula:** [Preencher aqui]
-- **Curso:** [Preencher aqui]
-- **Turma:** [Preencher aqui]
+- **Nome completo:** [Gabriel robson nunes neiva da silva]
+- **Matrícula:** [212005417]
+- **Curso:** [Engenharia de software]
+- **Turma:** [06]
 
 ---
 
