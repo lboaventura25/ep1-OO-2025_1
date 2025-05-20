@@ -1,24 +1,24 @@
 package entidades;
 
-/* import java.util.ArrayList; */
 import java.util.HashMap;
-/* import java.util.List; */
-/* import java.io.Serializable; */
 
 public class Disciplina extends Entidade {
 	private static final long serialVerionUID = 1L;
 
+	private String nomeDisciplina;
 	private int codigo;
 	private int horas;
 	private String[] preRequisitos;
-	private HashMap<Long, Turma> turmas;// como eu crio um metodo pra adicionar turmas nessa lista???
-															// DAO???
+	private HashMap<Long, Turma> turmasPorDisciplinas;
+	// como inicializar essa lista sem criar uma Disciplina ?
 
-	public Disciplina(int codigo, int horas, String[] preRequisitos) {
-		super();
+	public Disciplina(String nomeDisciplina, int codigo, int horas, String[] preRequisitos,
+			HashMap<Long, Turma> turmasPorDisciplinas) {
+		this.nomeDisciplina = nomeDisciplina;
 		this.codigo = codigo;
 		this.horas = horas;
 		this.preRequisitos = preRequisitos;
+		this.turmasPorDisciplinas = turmasPorDisciplinas;
 	}
 
 	public int getCodigo() {
@@ -43,6 +43,26 @@ public class Disciplina extends Entidade {
 
 	public void setPreRequisitos(String[] preRequisitos) {
 		this.preRequisitos = preRequisitos;
+	}
+
+	public static long getSerialverionuid() {
+		return serialVerionUID;
+	}
+
+	public String getNomeDisciplina() {
+		return nomeDisciplina;
+	}
+
+	public void setNomeDisciplina(String nomeDisciplina) {
+		this.nomeDisciplina = nomeDisciplina;
+	}
+
+	public HashMap<Long, Turma> getTurmasPorDisciplinas() {
+		return turmasPorDisciplinas;
+	}
+
+	public void setTurmasPorDisciplinas(HashMap<Long, Turma> turmasPorDisciplinas) {
+		this.turmasPorDisciplinas = turmasPorDisciplinas;
 	}
 
 }

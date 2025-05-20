@@ -6,12 +6,16 @@ import persistencia.daoEntidades.AlunoDao;
 import java.util.HashMap;
 
 import entidades.Aluno;
+import entidades.Listas;
 
 public class Main_teste {// pra testar eu preciso executar por aqui;
 
 	public static void main(String[] args) {
 		BancoDados bd = new BancoDados();
 		AlunoDao alunoDao = new AlunoDao();
+		Listas listas = new Listas();
+		
+		
 
 		System.out.println("iniciei meu BD e meu daoALuno");
 
@@ -26,7 +30,7 @@ public class Main_teste {// pra testar eu preciso executar por aqui;
 		//alunoDao.alterar(aluno2, BancoDados.getAlunosGeral(), "Curso", "Pedagogia");// TODO ver o porque desse metodo
 																					// alterar(especial) nao ta
 																					// funcionando
-		alunoDao.obter("Gabriel Vieira", BancoDados.getAlunosGeral());
+		alunoDao.obter(aluno1.getMatricula(), BancoDados.getAlunosGeral());
 	
 		alunoDao.listar(BancoDados.getAlunosGeral());// listando a lista alunos geral
 

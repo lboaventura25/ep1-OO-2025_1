@@ -16,41 +16,20 @@ import entidades.Disciplina;
 import entidades.Professor;
 import entidades.Turma;
 import entidades.Entidade;
+import entidades.Listas;
 
 public class BancoDados<T extends Entidade> {
 	static final String PATH_BD = "C:\\Users\\Gabriel\\eclipse-workspace\\trabalho_OO\\bin\\Persistencia\\";
 	// endereço com barra invertada;
-
-	private static HashMap<Integer, Disciplina> disciplinaGeral = new HashMap<Integer, Disciplina>();
-
-	private static HashMap<Integer, Aluno> alunosGeral = new HashMap<Integer, Aluno>();
-	// lista que tem todos osalunos:<matricula do aluno,Aluno>
-
-	// private static HashMap<Integer, Aluno> alunosPorTurma = new HashMap<Integer,
-	// Aluno>();// lista que tem oa alunos porturma:<código da turma,Aluno>
-	// ->ja inicializei ela em Turma
-
-	private static HashMap<Integer, Turma> turmasGeral = new HashMap<Integer, Turma>();
-	// TODO tem como eu colocar dois tipos de dados em uma lista? -> lista que vai
-	// ter
-	// todas as turmas: <codigoda turma, Turma> //
-
-	// private static HashMap<Integer, Turma> turmaPorDisciplina = new
-	// HashMap<Integer,
-	// Turma>();// lista que vai ter as turmas
-	// ->ja inicalizaei ela em Disciplinas // por disciplina:<codigo dadisciplina,
-	// Turma>
-
-	private static HashMap<Integer, Professor> professoresGeral = new HashMap<Integer, Professor>();
 	// lista que vai ter todos os professores: <id do professor, Professor>
 
 	// TODO como fazer uma lista que tenha os professores por Disciplinas???
 	static {
 		// chamo o preparar arquivo dentro do bloco estatico? acho que sim né.
-		carregar("professores.txt");
+	/* 	carregar("professores.txt");
 		carregar("alunoDB.txt");
 		carregar("turmasDB.txt");
-		carregar("disciplinaDB.txt");
+		carregar("disciplinaDB.txt"); */
 
 		// porque eu preciso desse bloco? n é so chamar o metodo de carregar(ler) e
 		// salvar(escrever) na classe onde eu quero executalas?
@@ -58,7 +37,25 @@ public class BancoDados<T extends Entidade> {
 		// quero isso pras minhas listas,
 		// logo.... ele vai estar aqui
 
+
+
+		carregar("listas.txt");
+
 	}
+
+	public static void salvar(Listas listas){
+		persistir(listas);
+	} 
+
+	private static void persistir( Listas listas) {//TODO verificar ese metodo 
+		try (ObjectOutputStream oss = new ObjectOutputStream(new FileOutputStream(PATH_BD + "listas.txt"))) {
+
+			oss.writeObject(listas);// escrevendo o arquivo
+		} catch (Exception e) {
+			System.out.println("Erro ao serializar o HashMap: " + e.getMessage());
+		}
+	}
+
 
 	public static void carregar(String nomeArquivo) {// método pronto
 		preparaArquivo(nomeArquivo);// porque ta chamando isso tudo de coisa ?
@@ -83,14 +80,6 @@ public class BancoDados<T extends Entidade> {
 	}
 
 
-	public static void persistir(HashMap<Integer, Aluno> nomeHash, String nomeArquivoHash) {//TODO reescrever esse metodo
-		try (ObjectOutputStream oss = new ObjectOutputStream(new FileOutputStream(PATH_BD + nomeArquivoHash))) {
-
-			oss.writeObject(nomeHash);// escrevendo o arquivo
-		} catch (Exception e) {
-			System.out.println("Erro ao serializar o HashMap: " + e.getMessage());
-		}
-	}
 
 	public static void ler (HashMap<Integer, Object> listaObjetos, String nomeArquivoHash){
 		//TODO conferir esse metodo
@@ -100,7 +89,7 @@ public class BancoDados<T extends Entidade> {
 
 		} catch (IOException | ClassNotFoundException e) {// se o arquivo n existir criar um arquivo, ele precisa ser
 															// ja// um hashMap? acho que sim né.
-			persistir(null, nomeArquivoHash);}
+			persistir(null);}
 
 		} 
 
@@ -118,17 +107,4 @@ public class BancoDados<T extends Entidade> {
 		f.createNewFile();
 
 	}
-
-	public static HashMap<Integer, Aluno> getAlunosGeral() {
-		return alunosGeral;
-	}
-
-	public static HashMap<Integer, Turma> getTurmasGeral() {
-		return turmasGeral;
-	}
-
-	public static HashMap<Integer, Professor> getProfessoresGeral() {
-		return professoresGeral;
-	}
-
 }
