@@ -6,15 +6,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.nio.file.Files;// nao usando;
-import java.nio.file.Path;// nao usando;
+/* import java.nio.file.Files;// nao usando;
+import java.nio.file.Path;// nao usando; */
 import java.util.HashMap;
 //import java.util.Map;
 
-import entidades.Aluno;
+/* import entidades.Aluno;
 import entidades.Disciplina;
 import entidades.Professor;
-import entidades.Turma;
+import entidades.Turma; */
 import entidades.Entidade;
 import entidades.Listas;
 
@@ -52,7 +52,7 @@ public class BancoDados<T extends Entidade> {
 
 			oss.writeObject(listas);// escrevendo o arquivo
 		} catch (Exception e) {
-			System.out.println("Erro ao serializar o HashMap: " + e.getMessage());
+			System.out.println("Erro ao serializar as listas: " + e.getMessage());
 		}
 	}
 
