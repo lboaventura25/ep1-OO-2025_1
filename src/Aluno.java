@@ -4,20 +4,13 @@ public class Aluno {
     private String nome;
     private String matricula;
     //    private Integer cpf; //validar cpf
-//    private String curso;
-    private Disciplina disciplina;
+    private String curso;
 
-//    public Aluno(String nome, String matricula, Integer cpf, String curso){
-//        this.nome =nome;
-//        this.matricula = matricula;
-//        this.cpf = cpf;
-//        this.curso = curso;
-//    }
-
-    public Aluno(String nome, String matricula, Disciplina disciplina){
+    public Aluno(String nome, String matricula, String curso){
         this.nome =nome;
         this.matricula = matricula;
-        this.disciplina = disciplina;
+        this.curso = curso;
+
 
     }
 
@@ -45,28 +38,21 @@ public class Aluno {
 //        return this.cpf;
 //    }
 
-//    public void setCurso(String curso){
-//        this.curso = curso;
-//    }
-//
-//    public String getCurso(){
-//        return this.curso;
-//    }
-
-    public void setDisciplina(Disciplina disciplina){
-        this.disciplina = disciplina;
+    public void setCurso(String curso){
+        this.curso = curso;
     }
 
-    public Disciplina getDIsciplina(){
-        return this.disciplina;
+    public String getCurso(){
+        return this.curso;
     }
+
 
     public void formatado(){
-        System.out.printf("Nome: %s, Matricula: %s \n", this.nome, this.matricula);
+        System.out.printf("Nome: %s, Matricula: %s, Curso: %s \n", this.nome, this.matricula, this.curso);
     }
 
     public String toCSV(){
-        return this.nome + "," + this.matricula + "," + this.disciplina;
+        return this.nome + "," + this.matricula + "," + this.curso;
     }
     public static void salvarAluno( Aluno aluno, String nomeArquivo){
 
@@ -90,9 +76,8 @@ public class Aluno {
                 String[] partes = linha.split(",");
                 String nome = partes[0];
                 String matricula = partes[1];
-                String nomeDisciplina = partes[2];
-                Disciplina disciplina = new Disciplina(nomeDisciplina);
-                Aluno aluno = new Aluno(nome, matricula, disciplina);
+                String curso = partes[2];
+                Aluno aluno = new Aluno(nome, matricula, curso);
                 alunos.add(aluno);
             }
 
