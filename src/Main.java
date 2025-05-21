@@ -18,10 +18,22 @@ public class Main {
                         1- Cadastrar um aluno
                         2- Ver alunos cadastrados
                         """);
+                //Codigo quebra quando nenhuma opcao eh selecionada CORRIGIR ANTES DE MANDAR
                 Integer op2 = leitor.nextInt();
+                leitor.useDelimiter(System.lineSeparator());
                 if (op2 == 1){
-                    Disciplina disciplina = new Disciplina("c1");
-                    Aluno aluno1 = new Aluno("djota", "241040341", disciplina );
+                    //verificar se o nome ja existe no banco de dados
+                    System.out.println("Digite o nome do aluno: ");
+                    String nomeAluno = leitor.next();
+                    //verificar se a matricula ja existe no banco de dados
+                    System.out.println("Digite a matricula do aluno:");
+                    String matriculaAluno = leitor.next();
+
+                    //verificar se esta sendo digitado um curso mesmo
+                    System.out.println("Digite o curso de graduacao do aluno:");
+                    String cursoAluno = leitor.next();
+
+                    Aluno aluno1 = new Aluno(nomeAluno, matriculaAluno, cursoAluno );
                     Aluno.salvarAluno(aluno1, "teste.csv");
                 }
                 if (op2 == 2){
