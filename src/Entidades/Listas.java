@@ -2,38 +2,32 @@ package entidades;
 // calsse responsável ppor inicializar as listas
 
 import java.util.HashMap;
-import java.util.List;
+/* import java.util.List; */
 
 public class Listas {
-    private HashMap<Integer, Aluno> alunosGeral ;
-    private HashMap<Integer, Turma> turmasGeral ;
-    private HashMap<Integer, Disciplina> disciplinaGeral ;
-    private HashMap<Integer, Professor> professoresGeral ;
-    
-    
-    public Listas() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    private static HashMap<Integer, Aluno> alunosGeral;
+    private static HashMap<Integer, Turma> turmasGeral;
+    private static HashMap<Integer, Disciplina> disciplinaGeral;
+    private static HashMap<Integer, Professor> professoresGeral;
 
-	public HashMap<Integer, Professor> getProfessoresGeral() {
-		return professoresGeral;
-	}
+    public  static HashMap<Integer, Professor> getProfessoresGeral() {
+        return professoresGeral;
+    }
 
-	public void setProfessoresGeral(HashMap<Integer, Professor> professoresGeral) {
-		this.professoresGeral = professoresGeral;
-	}
-
-	public HashMap<Integer, Aluno> getAlunosGeral() {
+    public static HashMap<Integer, Aluno> getAlunosGeral() {
         return alunosGeral;
     }
 
-    public HashMap<Integer, Turma> getTurmasGeral() {
+    public static HashMap<Integer, Turma> getTurmasGeral() {
         return turmasGeral;
     }
 
-    public HashMap<Integer, Disciplina> getDisciplinaGeral() {
+    public static HashMap<Integer, Disciplina> getDisciplinaGeral() {
         return disciplinaGeral;
+    }
+
+    public void setProfessoresGeral(HashMap<Integer, Professor> professoresGeral) {
+        this.professoresGeral = professoresGeral;
     }
 
     public void setAlunosGeral(HashMap<Integer, Aluno> alunosGeral) {

@@ -6,33 +6,39 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import entidades.Listas;
 import entidades.Aluno;
 import persistencia.daoInterfaces.IAlunoDao;
 
 public class AlunoDao implements IAlunoDao {
 
 	@Override
-	public Aluno incluir(Aluno aluno, Integer key, HashMap<Integer, Aluno> listaManipulada) {
-		if (listaManipulada != null) {
-			listaManipulada.put(key, aluno);
-			System.out.println("Objeto: " + aluno.getNome() + " adicionado com sucesso");
-			System.out.println("-----------------");
+	public Aluno incluir(Aluno aluno, HashMap<Integer, Aluno> listaManipulada) {
+		// escolho aonde eu quero colocar e e quem eu quero colocar;
+		if (verificaDuplicidade(aluno, listaManipulada)) {
+			System.out.println("detectada Duplicidade de matricula");
 		} else {
-			System.out.println("Lista vazia ou não existe");
+			if (listaManipulada != null) {// se a lista existir
+				listaManipulada.put(aluno.getMatricula(), aluno);
+				System.out.println("Objeto: " + aluno.getNome() + " adicionado com sucesso na lista ");
+				System.out.println("-----------------");
+			} else {
+				System.out.println("Lista vazia ou não existe");
+			}
 		}
+
 		return null;
 	}
 
 	@Override
-	public List<Aluno> listar(HashMap<Integer, Aluno> listaExibida) {// aqui pode ser duas listas diferentes por isso
-																		// tenho que ter um argumento pra isso
+	public List<Aluno> listarLista(HashMap<Integer, Aluno> listaExibida) {// aqui pode ser duas listas diferentes por
+																			// isso
+																			// tenho que ter um argumento pra isso
 		// listando cada objeto da lista
-		System.out.println("Na lista que tem todos os alunos matriculados tem os tais alunos:");
+		System.out.println("Nessa lista tem os seguintes alunos:");
 		System.out.println("------------");
 		for (Map.Entry<Integer, Aluno> elemento : listaExibida.entrySet()) {
 
-			System.out.println("objeto: " + elemento.getValue());
-			System.out.println("chave:" + elemento.getKey());
 			System.out.println("nome do aluno:" + elemento.getValue().getNome());
 			System.out.println("matricula do aluno:" + elemento.getValue().getMatricula());
 			System.out.println("curso:" + elemento.getValue().getCurso());
@@ -43,27 +49,26 @@ public class AlunoDao implements IAlunoDao {
 		return null;
 	}
 
-	@Override
+	@Override // VERIFICADO
 	public boolean excluir(Integer key, HashMap<Integer, Aluno> listaManipulada) {
 		if (listaManipulada.containsKey(key)) {// verificando se existe esse objeto na lista
+			listaManipulada.remove(key);// achar um valor pela a chave
 			System.out.println("objeto de chave: " + key + " removido");
 			System.out.println("objeto de valor: " + listaManipulada.get(key) + " removido");
-			listaManipulada.remove(key);
 			return true;
 		} else {
 			System.out.println("esse objeto nao existe nessa  lista");
 			return false;
-		} // achar um valor pela a chave
+		}
 
 	}
 
 	@Override
-	public Aluno alterar(Aluno entidade, HashMap<Integer, Aluno> listaManipulada, String campoAlterado,
-			String alteração) {
-		Aluno elemento = listaManipulada.get(entidade.getMatricula());
-		// a matricula vai ser a chave, logo passando a matricula eu retorno a chave
-		// dele.
-		if (listaManipulada.containsValue(entidade)) {// se a lista conter algum valor desse
+	public Aluno alterar(Integer chave, String campoAlterado, String alteração) {
+
+		Aluno elemento = obter(chave);// metodo que acha o aluno pela a chave;
+
+		if (Listas.getAlunosGeral().containsValue(obter(chave))) {// se a lista conter algum valor desse
 			if (campoAlterado == "Matricula") {// retorno o velho e o novo
 				System.out.println("tentando alterar matricula");
 				Integer novaMatricula = Integer.parseInt(alteração);
@@ -72,8 +77,9 @@ public class AlunoDao implements IAlunoDao {
 				boolean velhoEspecial = elemento.isEspecial();
 				Aluno novoAluno = new Aluno(novaMatricula, velhoNome, velhoCurso, velhoEspecial);// criei outro aluno
 
-				excluir(elemento.getMatricula(), listaManipulada);// excluindo o antigo elemento com a matricula velha.
-				incluir(novoAluno, novaMatricula, listaManipulada);// adicionando novo aluno na lista
+				excluir(elemento.getMatricula(), Listas.getAlunosGeral());// excluindo o antigo elemento com a matricula
+																			// velha.
+				incluir(novoAluno, Listas.getAlunosGeral());// adicionando novo aluno na lista
 				System.out.println("matriucula alterada com sucesso");
 				return elemento;
 			}
@@ -107,61 +113,40 @@ public class AlunoDao implements IAlunoDao {
 			}
 
 		} else {
-			System.out.println("não existe esse elemento em tal lista");
+			System.out.println("não existe esse elemento na lista de alunos");
 			return null;
 		}
 		return null;
 	}
 
-	/*
-	 * @Override
-	 * public Aluno obter(String nome, HashMap<Integer,Aluno> listaManipulada) {
-	 * for( Map.Entry<Integer,Aluno> elemento : listaManipulada.entrySet()){
-	 * if (elemento.getValue().getNome() == nome) {// ele ta rodando esse if pra
-	 * todos e eu n queor isso
-	 * Aluno escolhido = elemento.getValue();
-	 * System.out.println(escolhido);
-	 * System.out.println(elemento.getValue().getNome()+" foi exibido");
-	 * System.out.println("---------------");
-	 * 
-	 * 
-	 * 
-	 * return escolhido;
-	 * 
-	 * }else{
-	 * System.out.println("este aluno nao se encontra em tal lista");
-	 * }
-	 * 
-	 * 
-	 * }
-	 * 
-	 * // TODO verificar esse metodo
-	 * return null;
-	 * }
-	 */
-
 	@Override
-	public boolean contains(Integer key, HashMap<Integer, Aluno> listaManipulada) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean verificaDuplicidade(Aluno aluno, HashMap<Integer, Aluno> listaManipulada) {
+		// esse metodo vai verificar se quem eu quero cadastrar ja existe na lista onde
+		// eu quero colocar ele.
+		if (listaManipulada.containsValue(aluno)) {
+			System.out.println("este aluno ja esta presente nessa lista");
+
+			return true;
+		} else {
+			return false;
+
+		}
+		/*
+		 * throw new
+		 * UnsupportedOperationException("Unimplemented method 'verificaDuplicidade'");/
+		 * / oque isso faz ?
+		 */
 	}
 
 	@Override
-	public boolean verificaDuplicidade() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'verificaDuplicidade'");
-	}
-
-	@Override
-	public Aluno obter(Integer chave, HashMap<Integer, Aluno> listaManipulada) {
-		if (listaManipulada.containsKey(chave)) {
-			System.out.println(" achou "+ listaManipulada.get(chave));
-			return listaManipulada.get(chave);
+	public Aluno obter(Integer chave) {// buscando aluno no alunos geral e exibindo ele
+		if (Listas.getAlunosGeral().containsKey(chave)) {
+			System.out.println(" achou " + Listas.getAlunosGeral().get(chave));
+			return Listas.getAlunosGeral().get(chave);
 
 		} else {
 			System.out.println("o aluno vinculado a esta maticula nao esta nessa lista");
 		}
-		// TODO Auto-generated method stub
 		return null;
 	}
 
