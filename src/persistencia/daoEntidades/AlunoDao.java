@@ -5,6 +5,7 @@ package persistencia.daoEntidades;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.spi.CalendarNameProvider;
 
 import entidades.Listas;
 import entidades.Aluno;
@@ -12,8 +13,9 @@ import persistencia.daoInterfaces.IAlunoDao;
 
 public class AlunoDao implements IAlunoDao {
 
-	@Override
+	@Override// VERIFICADA
 	public Aluno incluir(Aluno aluno, HashMap<Integer, Aluno> listaManipulada) {
+		
 		// escolho aonde eu quero colocar e e quem eu quero colocar;
 		if (verificaDuplicidade(aluno, listaManipulada)) {
 			System.out.println("detectada Duplicidade de matricula");
@@ -22,18 +24,18 @@ public class AlunoDao implements IAlunoDao {
 				listaManipulada.put(aluno.getMatricula(), aluno);
 				System.out.println("Objeto: " + aluno.getNome() + " adicionado com sucesso na lista ");
 				System.out.println("-----------------");
-			} else {
-				System.out.println("Lista vazia ou não existe");
 			}
+
 		}
 
 		return null;
 	}
 
-	@Override
+	@Override// VERIFICADA
 	public List<Aluno> listarLista(HashMap<Integer, Aluno> listaExibida) {// aqui pode ser duas listas diferentes por
 																			// isso
 																			// tenho que ter um argumento pra isso
+		
 		// listando cada objeto da lista
 		System.out.println("Nessa lista tem os seguintes alunos:");
 		System.out.println("------------");
@@ -69,9 +71,9 @@ public class AlunoDao implements IAlunoDao {
 		Aluno elemento = obter(chave);// metodo que acha o aluno pela a chave;
 
 		if (Listas.getAlunosGeral().containsValue(obter(chave))) {// se a lista conter algum valor desse
-			if (campoAlterado == "Matricula") {// retorno o velho e o novo
+			if (campoAlterado == "Matricula" || campoAlterado == "matricula") {// retorno o velho e o novo
 				System.out.println("tentando alterar matricula");
-				Integer novaMatricula = Integer.parseInt(alteração);
+				Integer novaMatricula = Integer.parseInt(alteração);// transforma a string em integer
 				String velhoNome = elemento.getNome();
 				String velhoCurso = elemento.getCurso();
 				boolean velhoEspecial = elemento.isEspecial();
@@ -83,13 +85,15 @@ public class AlunoDao implements IAlunoDao {
 				System.out.println("matriucula alterada com sucesso");
 				return elemento;
 			}
-			if (campoAlterado == "Curso") {
+			// VERIFICADO
+			if (campoAlterado == "Curso" || campoAlterado == "curso") {
 				System.out.println("tentando alterar o Curso");
 				elemento.setCurso(alteração);
 				System.out.println("curso alterado");
 				return elemento;
 			}
-			if (campoAlterado == "Nome") {
+			 // VERIFICADO
+			if (campoAlterado == "Nome" || campoAlterado == "nome") {
 				System.out.println("tentando alterar o nome");
 				elemento.setNome(alteração);
 				System.out.println("nome alterado com sucesso");
@@ -99,7 +103,7 @@ public class AlunoDao implements IAlunoDao {
 				// talvez "aluno1", "aluno2"... e assim por diante.
 
 			}
-			if (campoAlterado == "Especial") { // TODO verificar esse metodo;
+			if (campoAlterado == "Especial" || campoAlterado == "nome") { // TODO verificar esse metodo;
 				System.out.println("tentando alterar o Especial");
 				if (alteração != "true" | alteração != "false") {// se o valor nao for true ou false;
 					System.out.println("alteração não válida");
@@ -110,6 +114,10 @@ public class AlunoDao implements IAlunoDao {
 					return elemento;
 				}
 
+			}else{
+				System.out.println("-> Nao existe esse campo para ser alterado.");
+				System.out.println("-> Os campos existentes são: nome, curso, matricula, e se é especial.");
+
 			}
 
 		} else {
@@ -119,12 +127,14 @@ public class AlunoDao implements IAlunoDao {
 		return null;
 	}
 
-	@Override
+	@Override// VERIFICADA
 	public boolean verificaDuplicidade(Aluno aluno, HashMap<Integer, Aluno> listaManipulada) {
+		
 		// esse metodo vai verificar se quem eu quero cadastrar ja existe na lista onde
 		// eu quero colocar ele.
-		if (listaManipulada.containsValue(aluno)) {
-			System.out.println("este aluno ja esta presente nessa lista");
+		if (listaManipulada.containsKey(aluno.getMatricula())) {
+			System.out.println("O aluno de nome: " + aluno.getNome() + ", e matricula: " + aluno.getMatricula()
+					+ " já esta presente nessa lista.");
 
 			return true;
 		} else {
@@ -138,7 +148,7 @@ public class AlunoDao implements IAlunoDao {
 		 */
 	}
 
-	@Override
+	@Override// VERIFICADO
 	public Aluno obter(Integer chave) {// buscando aluno no alunos geral e exibindo ele
 		if (Listas.getAlunosGeral().containsKey(chave)) {
 			System.out.println(" achou " + Listas.getAlunosGeral().get(chave));
