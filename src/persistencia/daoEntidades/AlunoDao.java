@@ -5,13 +5,14 @@ package persistencia.daoEntidades;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.spi.CalendarNameProvider;
+
 
 import entidades.Listas;
 import entidades.Aluno;
 import persistencia.daoInterfaces.IAlunoDao;
 
 public class AlunoDao implements IAlunoDao {
+	// funciona pra lista alunoGeral
 
 	@Override// VERIFICADA
 	public Aluno incluir(Aluno aluno, HashMap<Integer, Aluno> listaManipulada) {
@@ -35,7 +36,8 @@ public class AlunoDao implements IAlunoDao {
 	public List<Aluno> listarLista(HashMap<Integer, Aluno> listaExibida) {// aqui pode ser duas listas diferentes por
 																			// isso
 																			// tenho que ter um argumento pra isso
-		
+		// funciona pra qualquer lista??
+	
 		// listando cada objeto da lista
 		System.out.println("Nessa lista tem os seguintes alunos:");
 		System.out.println("------------");

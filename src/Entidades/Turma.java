@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Turma extends Entidade {
 	private static final long serialVerionUID = 1L;
 
-	private int numeroDaTurma;
+	private Integer codigoDaDisciplina;
 	private String disciplina;
 	private String professor;
 	private double semestre;
@@ -14,12 +14,11 @@ public class Turma extends Entidade {
 	private String sala;
 	private double horario;
 	private int capMaxAluno;
-	private HashMap<Long, Aluno> alunosPorTurma;// criando um atributo que receba a lista de alunos. -> vou precisar
-	// TODO de um metodo pra adicionar alunos em turmas, DAOTurma???
+	private HashMap<Integer, Aluno> alunosPorTurma;// criando um atributo que receba a lista de alunos. -> vou precisar
 
-	public Turma(int numeroDaTurma, String disciplina, String professor, double semestre, boolean presencial,
-			String sala, double horario, int capMaxAluno, HashMap<Long, Aluno> alunosPorTurma) {
-		this.numeroDaTurma = numeroDaTurma;
+	public Turma(Integer codigoDaDisciplina, String disciplina, String professor, double semestre, boolean presencial,
+			String sala, double horario, int capMaxAluno, HashMap<Integer, Aluno> alunosPorTurma) {
+		this.codigoDaDisciplina = codigoDaDisciplina;
 		this.disciplina = disciplina;
 		this.professor = professor;
 		this.semestre = semestre;
@@ -30,7 +29,7 @@ public class Turma extends Entidade {
 		this.alunosPorTurma = alunosPorTurma;
 	}
 
-	public HashMap<Long, Aluno> getAlunosPorTurma() {
+	public HashMap<Integer, Aluno> getAlunosPorTurma() {
 		return alunosPorTurma;
 	}
 
@@ -94,15 +93,16 @@ public class Turma extends Entidade {
 		return serialVerionUID;
 	}
 
-	public int getNumeroDaTurma() {
-		return numeroDaTurma;
+	public Integer getCodigoDaDisciplina() {
+		return codigoDaDisciplina;
 	}
 
 	public void setNumeroDaTurma(int numeroDaTurma) {
-		this.numeroDaTurma = numeroDaTurma;
+		this.codigoDaDisciplina = numeroDaTurma;
 	}
 
-	public void setAlunosPorTurma(HashMap<Long, Aluno> alunosPorTurma) {
+	// será se vou precisar mesmo desse metodo?
+	public void setAlunosPorTurma(HashMap<Integer, Aluno> alunosPorTurma) {
 		this.alunosPorTurma = alunosPorTurma;
 	}
 

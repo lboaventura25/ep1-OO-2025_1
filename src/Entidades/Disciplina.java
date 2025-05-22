@@ -6,14 +6,14 @@ public class Disciplina extends Entidade {
 	private static final long serialVerionUID = 1L;
 
 	private String nomeDisciplina;
-	private int codigo;
+	private String codigo;
 	private int horas;
 	private String[] preRequisitos;
-	private HashMap<Long, Turma> turmasPorDisciplinas;
+	private HashMap<Integer, Turma> turmasPorDisciplinas;
 	// como inicializar essa lista sem criar uma Disciplina ?
 
-	public Disciplina(String nomeDisciplina, int codigo, int horas, String[] preRequisitos,
-			HashMap<Long, Turma> turmasPorDisciplinas) {
+	public Disciplina(String nomeDisciplina, String codigo, int horas, String[] preRequisitos,
+			HashMap<Integer, Turma> turmasPorDisciplinas) {
 		this.nomeDisciplina = nomeDisciplina;
 		this.codigo = codigo;
 		this.horas = horas;
@@ -21,11 +21,11 @@ public class Disciplina extends Entidade {
 		this.turmasPorDisciplinas = turmasPorDisciplinas;
 	}
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
@@ -57,11 +57,11 @@ public class Disciplina extends Entidade {
 		this.nomeDisciplina = nomeDisciplina;
 	}
 
-	public HashMap<Long, Turma> getTurmasPorDisciplinas() {
+	public HashMap<Integer, Turma> getTurmasPorDisciplinas() {
 		return turmasPorDisciplinas;
 	}
 
-	public void setTurmasPorDisciplinas(HashMap<Long, Turma> turmasPorDisciplinas) {
+	public void setTurmasPorDisciplinas(HashMap<Integer, Turma> turmasPorDisciplinas) {
 		this.turmasPorDisciplinas = turmasPorDisciplinas;
 	}
 
