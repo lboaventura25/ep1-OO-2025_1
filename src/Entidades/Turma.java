@@ -9,15 +9,15 @@ public class Turma extends Entidade {
 	private Integer codigoDaDisciplina;
 	private String disciplina;
 	private String professor;
-	private double semestre;
+	private String semestre;
 	private boolean presencial;
 	private String sala;
-	private double horario;
+	private String horario;
 	private int capMaxAluno;
 	private HashMap<Integer, Aluno> alunosPorTurma;// criando um atributo que receba a lista de alunos. -> vou precisar
 
-	public Turma(Integer codigoDaDisciplina, String disciplina, String professor, double semestre, boolean presencial,
-			String sala, double horario, int capMaxAluno, HashMap<Integer, Aluno> alunosPorTurma) {
+	public Turma(Integer codigoDaDisciplina, String disciplina, String professor, String semestre, boolean presencial,
+			String sala, String horario, int capMaxAluno, HashMap<Integer, Aluno> alunosPorTurma) {
 		this.codigoDaDisciplina = codigoDaDisciplina;
 		this.disciplina = disciplina;
 		this.professor = professor;
@@ -49,11 +49,11 @@ public class Turma extends Entidade {
 		this.professor = professor;
 	}
 
-	public double getSemestre() {
+	public String getSemestre() {
 		return semestre;
 	}
 
-	public void setSemestre(double semestre) {
+	public void setSemestre(String semestre) {
 		this.semestre = semestre;
 	}
 
@@ -73,11 +73,11 @@ public class Turma extends Entidade {
 		this.sala = sala;
 	}
 
-	public double getHorario() {
+	public String getHorario() {
 		return horario;
 	}
 
-	public void setHorario(double horario) {
+	public void setHorario(String horario) {
 		this.horario = horario;
 	}
 

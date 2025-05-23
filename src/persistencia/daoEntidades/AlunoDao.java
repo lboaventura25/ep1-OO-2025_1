@@ -73,7 +73,7 @@ public class AlunoDao implements IAlunoDao {
 		Aluno elemento = obter(chave);// metodo que acha o aluno pela a chave;
 
 		if (Listas.getAlunosGeral().containsValue(obter(chave))) {// se a lista conter algum valor desse
-			if (campoAlterado == "Matricula" || campoAlterado == "matricula") {// retorno o velho e o novo
+			if (campoAlterado == "Matricula") {// retorno o velho e o novo
 				System.out.println("tentando alterar matricula");
 				Integer novaMatricula = Integer.parseInt(alteração);// transforma a string em integer
 				String velhoNome = elemento.getNome();
@@ -88,14 +88,14 @@ public class AlunoDao implements IAlunoDao {
 				return elemento;
 			}
 			// VERIFICADO
-			if (campoAlterado == "Curso" || campoAlterado == "curso") {
+			if (campoAlterado == "Curso") {
 				System.out.println("tentando alterar o Curso");
 				elemento.setCurso(alteração);
 				System.out.println("curso alterado");
 				return elemento;
 			}
 			 // VERIFICADO
-			if (campoAlterado == "Nome" || campoAlterado == "nome") {
+			if (campoAlterado == "Nome" ) {
 				System.out.println("tentando alterar o nome");
 				elemento.setNome(alteração);
 				System.out.println("nome alterado com sucesso");
@@ -105,7 +105,7 @@ public class AlunoDao implements IAlunoDao {
 				// talvez "aluno1", "aluno2"... e assim por diante.
 
 			}
-			if (campoAlterado == "Especial" || campoAlterado == "nome") { // TODO verificar esse metodo;
+			if (campoAlterado == "Especialidade" ) { // TODO verificar esse metodo;
 				System.out.println("tentando alterar o Especial");
 				if (alteração != "true" | alteração != "false") {// se o valor nao for true ou false;
 					System.out.println("alteração não válida");
@@ -118,7 +118,7 @@ public class AlunoDao implements IAlunoDao {
 
 			}else{
 				System.out.println("-> Nao existe esse campo para ser alterado.");
-				System.out.println("-> Os campos existentes são: nome, curso, matricula, e se é especial.");
+				System.out.println("-> Os campos existentes são: 'Nome', 'Curso', 'Matricula', e 'Especialidade'");
 
 			}
 
