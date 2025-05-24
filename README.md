@@ -9,9 +9,9 @@ O enunciado do trabalho pode ser encontrado aqui:
 
 ## Dados do Aluno
 
-- **Nome completo:** [Preencher aqui]
-- **Matrícula:** [Preencher aqui]
-- **Curso:** [Preencher aqui]
+- **Nome completo:** Pedro Henrique Galdino de Andrade Wollmann
+- **Matrícula:** 241040341
+- **Curso:** Engenharias
 - **Turma:** [Preencher aqui]
 
 ---
