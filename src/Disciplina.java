@@ -1,6 +1,8 @@
+import java.io.*;
 import java.util.ArrayList;
 
 public class Disciplina {
+    private String nomeDisciplina;
     private String codigo;
     private Integer capacidadeMaxima;
     private String nomeDisciplina;
@@ -55,6 +57,23 @@ public class Disciplina {
     }
     public void setNomeProfessor(String nomeProfessor){
         this.nomeProfessor = nomeProfessor;
+    }
+
+    public static void listarMatriculados(String nomeArquivo){
+
+    }
+    //falta lista de matriculados
+    public static void  arquivarDisciplina(String nomeDisciplina, String codigo, String nomeProfessor, Integer capacidadeMaxima) {
+        try {
+            File arquivoCSV = new File(nomeDisciplina);
+            FileWriter out = new FileWriter(arquivoCSV);
+            out.write("#" + nomeDisciplina);
+            out.close();
+
+        }
+        catch (IOException e){
+            throw new RuntimeException();
+        }
     }
 }
 
