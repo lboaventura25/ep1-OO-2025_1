@@ -56,6 +56,7 @@ public class Main {
                         """);
                 int modoDisciplina = leitor.nextInt();
                 //temporario, nao mostra os alunos matriculados ainda
+                //ver se ele cria um arquivo novo ou usa o existente
                 ArrayList<Aluno> listaMatriculados = Aluno.listarAlunos("teste.csv");
                 if(modoDisciplina == 1){
 
@@ -75,11 +76,12 @@ public class Main {
 
                     Disciplina disciplina = new Disciplina(nomeDisciplina, codigoDisciplina,vagasDisponiveis,nomeProfessor,listaMatriculados);
                     // nao esta completo ainda, so um teste
-                    Disciplina.arquivarDisciplina(nomeDisciplina);
+                    //ver se aceita nomes com mais de uma palavra
+                    Disciplina.arquivarDisciplina(nomeDisciplina, codigoDisciplina, nomeProfessor, vagasDisponiveis );
 
                 }
                 else if(modoDisciplina == 2){
-                    //temporario, nao mostra os alunos matriculados ainda
+                    //temporario, nao mostra as diciplinas cadastradas ainda
                     for(Aluno i : listaMatriculados){
                         i.formatado();
                     }
