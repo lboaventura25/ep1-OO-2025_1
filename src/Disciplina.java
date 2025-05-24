@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Disciplina {
     private String nomeDisciplina;
+    //adicionar limitacoes para os possiveis codigos
     private String codigo;
     private Integer capacidadeMaxima;
     private String nomeProfessor;
@@ -62,11 +63,16 @@ public class Disciplina {
 
     }
     //falta lista de matriculados
+    //checar de alguma forma se o arquivo ja existe
     public static void  arquivarDisciplina(String nomeDisciplina, String codigo, String nomeProfessor, Integer capacidadeMaxima) {
         try {
             File arquivoCSV = new File(nomeDisciplina);
             FileWriter out = new FileWriter(arquivoCSV);
-            out.write("#" + nomeDisciplina);
+            //deve ter um jeito de otimizar esse parte do codigo(escrever os meta dados)
+            out.write("#" + nomeDisciplina + "\n");
+            out.write("#" + codigo +"\n");
+            out.write("#" + nomeProfessor + "\n");
+            out.write("#" + capacidadeMaxima + "\n");
             out.close();
 
         }
