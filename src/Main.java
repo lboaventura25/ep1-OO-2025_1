@@ -1,15 +1,17 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         Scanner leitor = new Scanner(System.in);
         while (true){
 
             System.out.println("""
                     Bem vindo ao sigaa
                     Qual modo deseja escolher?
-                    1- Modo aluno
-                    2- Sair
+                    1 - Modo aluno
+                    2 - Modo Disciplina
+                    3- Sair
                     """);
             Integer opcao = leitor.nextInt();
             if(opcao == 1){
@@ -19,9 +21,9 @@ public class Main {
                         2- Ver alunos cadastrados
                         """);
                 //Codigo quebra quando nenhuma opcao eh selecionada CORRIGIR ANTES DE MANDAR
-                Integer op2 = leitor.nextInt();
+                Integer modoAluno = leitor.nextInt();
                 leitor.useDelimiter(System.lineSeparator());
-                if (op2 == 1){
+                if (modoAluno == 1){
                     //verificar se o nome ja existe no banco de dados
                     System.out.println("Digite o nome do aluno: ");
                     String nomeAluno = leitor.next();
@@ -36,7 +38,7 @@ public class Main {
                     Aluno aluno1 = new Aluno(nomeAluno, matriculaAluno, cursoAluno );
                     Aluno.salvarAluno(aluno1, "teste.csv");
                 }
-                if (op2 == 2){
+                if (modoAluno == 2){
                     ArrayList<Aluno> alunos = Aluno.listarAlunos("teste.csv");
                     for(Aluno i : alunos){
                         i.formatado();
@@ -44,7 +46,47 @@ public class Main {
                 }
 
             }
-            if(opcao == 2){
+
+            else if (opcao == 2){
+                //Adicionar a opcao de voltar para o menu anterior
+                System.out.println("""
+                        Voce deseja:
+                        1- Cadastrar uma disciplina
+                        2- Ver disciplinas cadastradas
+                        """);
+                int modoDisciplina = leitor.nextInt();
+                //temporario, nao mostra os alunos matriculados ainda
+                ArrayList<Aluno> listaMatriculados = Aluno.listarAlunos("teste.csv");
+                if(modoDisciplina == 1){
+
+                    System.out.println("Digite o nome da disciplina:");
+                    // ver se o codigo quebra caso o nome seja maior que uma palavra
+                    String nomeDisciplina = leitor.next();
+
+                    System.out.println("Digite o codigo da disciplina:");
+                    String codigoDisciplina = leitor.next();
+
+                    System.out.println("digite o professor discente:");
+                    String nomeProfessor = leitor.next();
+
+                    System.out.println("digite a quantidade de vagas disponiveis na diciplina");
+                    Integer vagasDisponiveis = leitor.nextInt();
+
+
+                    Disciplina disciplina = new Disciplina(nomeDisciplina, codigoDisciplina,vagasDisponiveis,nomeProfessor,listaMatriculados);
+                    // nao esta completo ainda, so um teste
+                    Disciplina.arquivarDisciplina(nomeDisciplina);
+
+                }
+                else if(modoDisciplina == 2){
+                    //temporario, nao mostra os alunos matriculados ainda
+                    for(Aluno i : listaMatriculados){
+                        i.formatado();
+                    }
+                }
+            }
+
+            else if(opcao == 3){
                 break;
             }
 

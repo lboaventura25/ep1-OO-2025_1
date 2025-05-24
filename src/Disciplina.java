@@ -5,7 +5,6 @@ public class Disciplina {
     private String nomeDisciplina;
     private String codigo;
     private Integer capacidadeMaxima;
-    private String nomeDisciplina;
     private String nomeProfessor;
     private ArrayList<Aluno> listaMatriculados;
 
