@@ -59,8 +59,21 @@ public class Disciplina {
         this.nomeProfessor = nomeProfessor;
     }
 
-    public static void listarMatriculados(String nomeArquivo){
+    public void formatado(){
+        //formatacao inclompleta, faltam atributos
+        System.out.printf("Nome da disciplina: %s, Nome do discente:%s, Codigo da disciplina:%s", this.nomeDisciplina, this.nomeProfessor, this.codigo);
+    }
 
+    public static void listarMatriculados(Disciplina disciplina){
+        for (Aluno alunos : disciplina.listaMatriculados){
+            alunos.formatado();
+        }
+    }
+
+    public static void listarDisciplinas(ArrayList<Disciplina> listaDisciplina){
+        for (Disciplina i : listaDisciplina){
+                i.formatado();
+        }
     }
     //falta lista de matriculados
     //checar de alguma forma se o arquivo ja existe
@@ -73,12 +86,18 @@ public class Disciplina {
             out.write("#" + codigo +"\n");
             out.write("#" + nomeProfessor + "\n");
             out.write("#" + capacidadeMaxima + "\n");
+
+            // adicionar codigo para arquivar a lista de matriculados
             out.close();
 
         }
         catch (IOException e){
             throw new RuntimeException();
         }
+    }
+
+    public void matricularAluno(Aluno aluno){
+        this.listaMatriculados.add(aluno);
     }
 }
 
