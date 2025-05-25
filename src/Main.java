@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner leitor = new Scanner(System.in);
+        ArrayList<Disciplina> listaDisciplinas = new ArrayList<>();
         while (true){
 
             System.out.println("""
@@ -58,6 +59,8 @@ public class Main {
                 //temporario, nao mostra os alunos matriculados ainda
                 //ver se ele cria um arquivo novo ou usa o existente
                 ArrayList<Aluno> listaMatriculados = Aluno.listarAlunos("teste.csv");
+                
+                //teste remover depois
                 if(modoDisciplina == 1){
 
                     System.out.println("Digite o nome da disciplina:");
@@ -75,6 +78,7 @@ public class Main {
 
 
                     Disciplina disciplina = new Disciplina(nomeDisciplina, codigoDisciplina,vagasDisponiveis,nomeProfessor,listaMatriculados);
+                    listaDisciplinas.add(disciplina);
                     // nao esta completo ainda, so um teste
                     //ver se aceita nomes com mais de uma palavra
                     Disciplina.arquivarDisciplina(nomeDisciplina, codigoDisciplina, nomeProfessor, vagasDisponiveis );
@@ -82,9 +86,7 @@ public class Main {
                 }
                 else if(modoDisciplina == 2){
                     //temporario, nao mostra as diciplinas cadastradas ainda
-                    for(Aluno i : listaMatriculados){
-                        i.formatado();
-                    }
+                    Disciplina.listarDisciplinas(listaDisciplinas);
                 }
             }
 
