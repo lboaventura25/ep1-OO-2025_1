@@ -28,8 +28,7 @@ O enunciado do trabalho pode ser encontrado aqui:
    [Descrever aqui as principais pastas do projeto]
 
 3. **Versão do JAVA utilizada:**  
-   [Descrever aqui como versão do JAVA utilizada no projeto. Sugestão: `java 21`]
-
+   Neste projeto foi utilizada a versão 24 do java
 ---
 
 ## Vídeo de Demonstração
