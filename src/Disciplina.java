@@ -113,7 +113,7 @@ public class Disciplina {
         }
     }
 
-    public static void declararDisciplina(ArrayList<Disciplina> listaDisciplinas){
+    public static void iniciarDisciplina(ArrayList<Disciplina> listaDisciplinas){
         File dir = new File("disciplinas");
         File[] listaArquivos =dir.listFiles();
         if(listaArquivos != null){
@@ -132,22 +132,22 @@ public class Disciplina {
                     while ((linha =leitor.readLine()) != null){
                         cont++;
                         if(cont==1){
-                                nomeDisciplina = linha;
+                                nomeDisciplina = linha.substring(1);
                                 continue;
                         }
                         if(cont == 2){
-                            codigo = linha;
+                            codigo = linha.substring(1);
                             continue;
                         }
                         if(cont ==3){
-                            nomeProfessor = linha;
+                            nomeProfessor = linha.substring(1);
                             continue;
                         }
                         if(cont == 4){
-                            capacidadeMaxima = Integer.parseInt(linha);
+                            capacidadeMaxima = Integer.parseInt(linha.substring(1));
                             continue;
                         }
-                        if (cont>=5){
+                        else{
                             String linha2;
                             while((linha2 = leitor.readLine()) != null){
                                 //ver se da so pra usar o metodo que eu ja tinha escrito antes aqui, devia ter visto isso antes de escrever :/
