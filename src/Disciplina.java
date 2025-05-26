@@ -211,8 +211,6 @@ public class Disciplina {
             listaDisciplinas.add(disciplina);
             // nao esta completo ainda, so um teste
             //ver se aceita nomes com mais de uma palavra
-            Disciplina.arquivarDisciplina(disciplina);
-
         }
         else if(modoDisciplina == 2){
             Disciplina.listarDisciplinas(listaDisciplinas);
