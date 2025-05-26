@@ -5,6 +5,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner leitor = new Scanner(System.in);
         ArrayList<Disciplina> listaDisciplinas = new ArrayList<>();
+        Disciplina.iniciarDisciplina(listaDisciplinas);
         while (true){
 
             System.out.println("""
