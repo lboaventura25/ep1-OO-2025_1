@@ -23,6 +23,11 @@ public class Main {
             Disciplina.menuDisciplina(listaDisciplinas);
             }
             else if(opcao == 3){
+                System.out.println("Arquivando Suas disciplinas");
+                // ter comando para aguardar uns segundos
+                for(Disciplina i : listaDisciplinas){
+                    Disciplina.arquivarDisciplina(i);
+                }
                 break;
             }
 
