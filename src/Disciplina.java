@@ -80,6 +80,7 @@ public class Disciplina {
     //checar de alguma forma se o arquivo ja existe
     public static void  arquivarDisciplina(Disciplina disciplina) {
         try {
+            // essa linha deve dar problema se o nome tiver espacos
             File arquivoCSV = new File(disciplina.getNomeDisciplina());
             FileWriter out = new FileWriter(arquivoCSV);
             //deve ter um jeito de otimizar esse parte do codigo(escrever os meta dados)
@@ -104,6 +105,76 @@ public class Disciplina {
         if(this.listaMatriculados.size() <= this.capacidadeMaxima){
             this.listaMatriculados.add(aluno);
         }
+    }
+
+    public static void declararDisciplina(ArrayList<Disciplina> listaDisciplinas){
+        File dir = new File("disciplinas");
+        File[] listaArquivos =dir.listFiles();
+        if(listaArquivos != null){
+            for(File i : listaArquivos){
+                ArrayList<Aluno> listaAlunos = new ArrayList<>();
+                int cont = 0;
+                String nomeDisciplina = "";
+                String codigo = "";
+                // ver se tem problema mais de 1 nome
+                String nomeProfessor = "";
+                int capacidadeMaxima = 0;
+
+                try {
+                    BufferedReader leitor = new BufferedReader(new FileReader(i));
+                    while (leitor.readLine() != null){
+                        cont++;
+                        if(cont==1){
+                                nomeDisciplina = leitor.readLine();
+                                continue;
+                        }
+                        if(cont == 2){
+                            codigo = leitor.readLine();
+                            continue;
+                        }
+                        if(cont ==3){
+                            nomeProfessor = leitor.readLine();
+                            continue;
+                        }
+                        if(cont == 4){
+                            capacidadeMaxima = Integer.parseInt(linha);
+                            continue;
+                        }
+                        if (cont>=5){
+                            String linha;
+                            while((linha = leitor.readLine()) != null){
+                                //ver se da so pra usar o metodo que eu ja tinha escrito antes aqui, devia ter visto isso antes de escrever :/
+                                //nao sei se precisa do [], talvez o cara tava usando uma versao antiga do java
+                                Aluno aluno = getAluno(linha);
+                                listaAlunos.add(aluno);
+
+                            }
+                        }
+                        Disciplina disciplina = new Disciplina(nomeDisciplina,codigo, capacidadeMaxima,nomeProfessor, listaAlunos);
+                        listaDisciplinas.add(disciplina);
+
+                    }
+                }
+                catch (IOException e){
+                    throw new RuntimeException("Erro ao ler o arquivo");
+                }
+            }
+        }
+        else{
+            throw new RuntimeException("Nao existe nenhuma disclina criada ainda");
+        }
+
+    }
+
+    private static Aluno getAluno(String linha) {
+        String[] partes = linha.split(",");
+        //ver depois se precisava mesmo declarar as variaveis antes e nao aqui
+        //converir se os valores certos estao indo para o lugar certo
+        String nomeAluno = partes[0];
+        String matricula = partes[1];
+        String curso = partes[2];
+        Aluno aluno = new Aluno(nomeAluno, matricula, curso);
+        return aluno;
     }
 
     public static void menuDisciplina(ArrayList<Disciplina> listaDisciplinas){
