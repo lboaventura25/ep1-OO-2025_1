@@ -151,10 +151,10 @@ public class Disciplina {
 
                             }
                         }
-                        Disciplina disciplina = new Disciplina(nomeDisciplina,codigo, capacidadeMaxima,nomeProfessor, listaAlunos);
-                        listaDisciplinas.add(disciplina);
-
                     }
+                    leitor.close();
+                    Disciplina disciplina = new Disciplina(nomeDisciplina,codigo, capacidadeMaxima,nomeProfessor, listaAlunos);
+                    listaDisciplinas.add(disciplina);
                 }
                 catch (IOException e){
                     throw new RuntimeException("Erro ao ler o arquivo");
