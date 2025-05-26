@@ -80,8 +80,14 @@ public class Disciplina {
     //checar de alguma forma se o arquivo ja existe
     public static void  arquivarDisciplina(Disciplina disciplina) {
         try {
-            // essa linha deve dar problema se o nome tiver espacos
-            File arquivoCSV = new File(disciplina.getNomeDisciplina());
+            File pasta = new File("disciplinas");
+            if(!pasta.exists()){
+                pasta.mkdir();
+            }
+
+            // verificar depois se isso funciona
+            String nomeArquivo = disciplina.getNomeDisciplina().replace(" ", "_") + ".csv";
+            File arquivoCSV = new File(pasta, disciplina.getNomeDisciplina());
             FileWriter out = new FileWriter(arquivoCSV);
             //deve ter um jeito de otimizar esse parte do codigo(escrever os meta dados)
             out.write("#" + disciplina.getNomeDisciplina() + "\n");
