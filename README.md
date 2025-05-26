@@ -72,4 +72,4 @@ O enunciado do trabalho pode ser encontrado aqui:
 
 ## Contato
 
-- [Opcional: E-mail pessoal do aluno.]
+- pedro.wollmann@gmail.com
