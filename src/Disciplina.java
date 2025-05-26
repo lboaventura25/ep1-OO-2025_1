@@ -121,19 +121,20 @@ public class Disciplina {
                 int capacidadeMaxima = 0;
 
                 try {
+                    String linha;
                     BufferedReader leitor = new BufferedReader(new FileReader(i));
-                    while (leitor.readLine() != null){
+                    while ((linha =leitor.readLine()) != null){
                         cont++;
                         if(cont==1){
-                                nomeDisciplina = leitor.readLine();
+                                nomeDisciplina = linha;
                                 continue;
                         }
                         if(cont == 2){
-                            codigo = leitor.readLine();
+                            codigo = linha;
                             continue;
                         }
                         if(cont ==3){
-                            nomeProfessor = leitor.readLine();
+                            nomeProfessor = linha;
                             continue;
                         }
                         if(cont == 4){
@@ -141,8 +142,8 @@ public class Disciplina {
                             continue;
                         }
                         if (cont>=5){
-                            String linha;
-                            while((linha = leitor.readLine()) != null){
+                            String linha2;
+                            while((linha2 = leitor.readLine()) != null){
                                 //ver se da so pra usar o metodo que eu ja tinha escrito antes aqui, devia ter visto isso antes de escrever :/
                                 //nao sei se precisa do [], talvez o cara tava usando uma versao antiga do java
                                 Aluno aluno = getAluno(linha);
