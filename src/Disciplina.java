@@ -146,7 +146,7 @@ public class Disciplina {
                             while((linha2 = leitor.readLine()) != null){
                                 //ver se da so pra usar o metodo que eu ja tinha escrito antes aqui, devia ter visto isso antes de escrever :/
                                 //nao sei se precisa do [], talvez o cara tava usando uma versao antiga do java
-                                Aluno aluno = getAluno(linha);
+                                Aluno aluno = getAluno(linha2);
                                 listaAlunos.add(aluno);
 
                             }
@@ -166,7 +166,7 @@ public class Disciplina {
         }
 
     }
-
+    //Minha IDE fez isso sem eu querer, ver se funciona normal
     private static Aluno getAluno(String linha) {
         String[] partes = linha.split(",");
         //ver depois se precisava mesmo declarar as variaveis antes e nao aqui
