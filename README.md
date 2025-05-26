@@ -66,7 +66,8 @@ O enunciado do trabalho pode ser encontrado aqui:
 
 ## Observações (Extras ou Dificuldades)
 
-- [Espaço para o aluno comentar qualquer funcionalidade extra que implementou, dificuldades enfrentadas, ou considerações importantes.]
+- Não foi utilizada nenhuma IA para a ajuda da realização do trabalho, entanto foram utilizados sites como StackOverflow e videos didaticos no youtube
+- 
 
 ---
 
