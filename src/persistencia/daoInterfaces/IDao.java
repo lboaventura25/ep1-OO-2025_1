@@ -6,9 +6,9 @@ import entidades.Entidade;
 
 
 
-public interface IDao<T extends Entidade> {// Generec's sendo T algum dado do tipo Entidade ?
+public interface IDao<T,T1 extends Entidade> {// Generec's sendo T algum dado do tipo Entidade ?
 
-	public T incluir( T entidade,HashMap<Integer, T> listaManipulada);// retornar quem eu adicionar 
+	public T incluir( T entidade,HashMap<Integer, T> listaManipulada, T1 turmaOuDisciplina);// retornar quem eu adicionar 
 	// quem eu quero colocar e aonde, a matricula eu pego do proprio objeto.
 
 	public boolean excluir ( Integer key,HashMap<Integer, T> listaManipulada);// retorna um true ou false se for excluid ou nao 

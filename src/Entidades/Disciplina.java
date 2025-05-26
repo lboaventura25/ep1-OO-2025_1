@@ -8,11 +8,11 @@ public class Disciplina extends Entidade {
 	private String nomeDisciplina;
 	private String codigo;
 	private int horas;
-	private String[] preRequisitos;
+	private HashMap<String,Disciplina> preRequisitos;
 	private HashMap<Integer, Turma> turmasPorDisciplinas;
 	// como inicializar essa lista sem criar uma Disciplina ?
 
-	public Disciplina(String nomeDisciplina, String codigo, int horas, String[] preRequisitos,
+	public Disciplina(String nomeDisciplina, String codigo, int horas, HashMap<String,Disciplina> preRequisitos,
 			HashMap<Integer, Turma> turmasPorDisciplinas) {
 		this.nomeDisciplina = nomeDisciplina;
 		this.codigo = codigo;
@@ -37,11 +37,11 @@ public class Disciplina extends Entidade {
 		this.horas = horas;
 	}
 
-	public String[] getPreRequisitos() {
+	public HashMap<String,Disciplina> getPreRequisitos() {
 		return preRequisitos;
 	}
 
-	public void setPreRequisitos(String[] preRequisitos) {
+	public void setPreRequisitos(HashMap<String,Disciplina> preRequisitos) {
 		this.preRequisitos = preRequisitos;
 	}
 

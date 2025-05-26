@@ -6,38 +6,61 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 import entidades.Listas;
+import entidades.Turma;
 import entidades.Aluno;
+import entidades.Disciplina;
 import persistencia.daoInterfaces.IAlunoDao;
 
 public class AlunoDao implements IAlunoDao {
 	// funciona pra lista alunoGeral
 
-	@Override// VERIFICADA
-	public Aluno incluir(Aluno aluno, HashMap<Integer, Aluno> listaManipulada) {
-		
-		// escolho aonde eu quero colocar e e quem eu quero colocar;
-		if (verificaDuplicidade(aluno, listaManipulada)) {
-			System.out.println("detectada Duplicidade de matricula");
+	@Override // VERIFICADA
+	public Aluno incluir(Aluno aluno, HashMap<Integer, Aluno> listaManipulada, Turma turma) {
+
+		if (listaManipulada != Listas.getAlunosGeral()) {// se a ista for diferente
+
+			if (listaManipulada.size() < turma.getCapMaxAluno()) {// se o tiver vaga na turma ainda,// verificado
+
+				if (verificaDuplicidade(aluno, listaManipulada)) {// verifica se já esta cadastrado
+					System.out.println("detectada Duplicidade de matricula");
+				} else {// senão, cadastra
+					if (listaManipulada != null) {// se a lista existir
+						listaManipulada.put(aluno.getMatricula(), aluno);
+						System.out.println("Objeto: " + aluno.getNome() + " adicionado com sucesso na lista ");
+						System.out.println("-----------------");
+					}
+
+				}
+			} else {
+				
+				System.out.println("A turma já está lotada");
+			}
+
 		} else {
-			if (listaManipulada != null) {// se a lista existir
-				listaManipulada.put(aluno.getMatricula(), aluno);
-				System.out.println("Objeto: " + aluno.getNome() + " adicionado com sucesso na lista ");
-				System.out.println("-----------------");
+			if (verificaDuplicidade(aluno, listaManipulada)) {// cadastra
+				System.out.println("detectada Duplicidade de matricula");
+			} else {
+				if (listaManipulada != null) {// se a lista existir
+					listaManipulada.put(aluno.getMatricula(), aluno);
+					System.out.println("Objeto: " + aluno.getNome() + " adicionado com sucesso na lista ");
+					System.out.println("-----------------");
+				}
+
 			}
 
 		}
+		// escolho aonde eu quero colocar e e quem eu quero colocar;
 
 		return null;
 	}
 
-	@Override// VERIFICADA
+	@Override // VERIFICADA
 	public List<Aluno> listarLista(HashMap<Integer, Aluno> listaExibida) {// aqui pode ser duas listas diferentes por
 																			// isso
 																			// tenho que ter um argumento pra isso
 		// funciona pra qualquer lista??
-	
+
 		// listando cada objeto da lista
 		System.out.println("Nessa lista tem os seguintes alunos:");
 		System.out.println("------------");
@@ -79,11 +102,12 @@ public class AlunoDao implements IAlunoDao {
 				String velhoNome = elemento.getNome();
 				String velhoCurso = elemento.getCurso();
 				boolean velhoEspecial = elemento.isEspecial();
-				Aluno novoAluno = new Aluno(novaMatricula, velhoNome, velhoCurso, velhoEspecial);// criei outro aluno
+				HashMap<String,Disciplina> disciplinaFeitas = elemento.getDisciplinasFeitas();
+				Aluno novoAluno = new Aluno(novaMatricula, velhoNome, velhoCurso, velhoEspecial, disciplinaFeitas);// criei outro aluno
 
 				excluir(elemento.getMatricula(), Listas.getAlunosGeral());// excluindo o antigo elemento com a matricula
 																			// velha.
-				incluir(novoAluno, Listas.getAlunosGeral());// adicionando novo aluno na lista
+				incluir(novoAluno, Listas.getAlunosGeral(), null);// adicionando novo aluno na lista
 				System.out.println("matriucula alterada com sucesso");
 				return elemento;
 			}
@@ -94,8 +118,8 @@ public class AlunoDao implements IAlunoDao {
 				System.out.println("curso alterado");
 				return elemento;
 			}
-			 // VERIFICADO
-			if (campoAlterado == "Nome" ) {
+			// VERIFICADO
+			if (campoAlterado == "Nome") {
 				System.out.println("tentando alterar o nome");
 				elemento.setNome(alteração);
 				System.out.println("nome alterado com sucesso");
@@ -105,7 +129,7 @@ public class AlunoDao implements IAlunoDao {
 				// talvez "aluno1", "aluno2"... e assim por diante.
 
 			}
-			if (campoAlterado == "Especialidade" ) { // TODO verificar esse metodo;
+			if (campoAlterado == "Especialidade") { // TODO verificar esse metodo;
 				System.out.println("tentando alterar o Especial");
 				if (alteração != "true" | alteração != "false") {// se o valor nao for true ou false;
 					System.out.println("alteração não válida");
@@ -116,7 +140,7 @@ public class AlunoDao implements IAlunoDao {
 					return elemento;
 				}
 
-			}else{
+			} else {
 				System.out.println("-> Nao existe esse campo para ser alterado.");
 				System.out.println("-> Os campos existentes são: 'Nome', 'Curso', 'Matricula', e 'Especialidade'");
 
@@ -129,9 +153,9 @@ public class AlunoDao implements IAlunoDao {
 		return null;
 	}
 
-	@Override// VERIFICADA
+	@Override // VERIFICADA
 	public boolean verificaDuplicidade(Aluno aluno, HashMap<Integer, Aluno> listaManipulada) {
-		
+
 		// esse metodo vai verificar se quem eu quero cadastrar ja existe na lista onde
 		// eu quero colocar ele.
 		if (listaManipulada.containsKey(aluno.getMatricula())) {
@@ -143,14 +167,10 @@ public class AlunoDao implements IAlunoDao {
 			return false;
 
 		}
-		/*
-		 * throw new
-		 * UnsupportedOperationException("Unimplemented method 'verificaDuplicidade'");/
-		 * / oque isso faz ?
-		 */
+
 	}
 
-	@Override// VERIFICADO
+	@Override // VERIFICADO
 	public Aluno obter(Integer chave) {// buscando aluno no alunos geral e exibindo ele
 		if (Listas.getAlunosGeral().containsKey(chave)) {
 			System.out.println(" achou " + Listas.getAlunosGeral().get(chave));
@@ -161,5 +181,21 @@ public class AlunoDao implements IAlunoDao {
 		}
 		return null;
 	}
+
+	@Override
+	public void adicionarDissciplinasFeitas(Aluno aluno, Disciplina disciplina) {
+		if (aluno != null & disciplina!= null) {
+			aluno.getDisciplinasFeitas().put(disciplina.getCodigo(), disciplina);
+		}
+	}
+
+	/*
+	 * @Override
+	 * public void verificaCapMax() {
+	 * if
+	 * throw new
+	 * UnsupportedOperationException("Unimplemented method 'verificaCapMax'");
+	 * }
+	 */
 
 }

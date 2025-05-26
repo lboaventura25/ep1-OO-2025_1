@@ -7,13 +7,14 @@ import java.util.Map;
 import entidades.Disciplina;
 import entidades.Listas;
 import entidades.Turma;
+import entidades.Aluno;
 import persistencia.daoInterfaces.ITurmaDao;
 
 public class TurmaDao implements ITurmaDao {
     // funciona pra lista turmasGeral
 
     @Override // VERIFICADA;
-    public Turma incluir(Turma entidade, HashMap<Integer, Turma> listaManipulada) {
+    public Turma incluir(Turma entidade, HashMap<Integer, Turma> listaManipulada,Disciplina disciplina) {
         // adicionar em turmas geral e em turmas/disciplinas
         if (listaManipulada.containsKey(entidade.getCodigoDaDisciplina())) {
             System.out.println("-> A turma da dsciplina " + entidade.getDisciplina() + " e codigo "
@@ -67,9 +68,20 @@ public class TurmaDao implements ITurmaDao {
                 boolean presecialidade = elemento.isPresencial();
                 String velhaSala = elemento.getSala();
                 String velhoHorario = elemento.getHorario();
-                int velhacapacidadeMax = elemento.getCapMaxAluno();
+                int velhacapacidadeMax = elemento.getCapMaxAluno();// adiccionar o novo obejeot
+                HashMap <Integer, Aluno> novaAlunoPorTurma = elemento.getAlunosPorTurma();
+                Turma novaTurma = new Turma(novoCodigo, velhaDisciplina, velhoProfessor, velhoSemestre, presecialidade, velhaSala, velhoHorario, velhacapacidadeMax, novaAlunoPorTurma); 
+                // logica pra cadastrar a novaTurma em tudo que ele fazia parte antes;
 
-                
+               
+                if (Listas.getTurmasGeral().containsKey(elemento.getCodigoDaDisciplina())) {
+                    excluir(elemento.getCodigoDaDisciplina(), Listas.getTurmasGeral());
+                    incluir(novaTurma, Listas.getTurmasGeral(),null);
+                }
+                if (true) {// como que eu tenho acesso as outras listas daqui ?
+
+                    
+                }
 
             }
             if (campoAlterado == "Disciplina") {
@@ -106,7 +118,6 @@ public class TurmaDao implements ITurmaDao {
             }
 
         }
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'alterar'");
     }
 
@@ -147,4 +158,5 @@ public class TurmaDao implements ITurmaDao {
 
     }
 
+   
 }
