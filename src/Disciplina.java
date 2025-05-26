@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Disciplina {
     private String nomeDisciplina;
@@ -61,7 +62,7 @@ public class Disciplina {
 
     public void formatado(){
         //formatacao inclompleta, faltam atributos
-        System.out.printf("Nome da disciplina: %s, Nome do discente:%s, Codigo da disciplina:%s", this.nomeDisciplina, this.nomeProfessor, this.codigo);
+        System.out.printf("Nome da disciplina: %s, Nome do discente:%s, Codigo da disciplina:%s \n", this.nomeDisciplina, this.nomeProfessor, this.codigo);
     }
 
     public static void listarMatriculados(Disciplina disciplina){
@@ -77,17 +78,18 @@ public class Disciplina {
     }
     //falta lista de matriculados
     //checar de alguma forma se o arquivo ja existe
-    public static void  arquivarDisciplina(String nomeDisciplina, String codigo, String nomeProfessor, Integer capacidadeMaxima) {
+    public static void  arquivarDisciplina(Disciplina disciplina) {
         try {
-            File arquivoCSV = new File(nomeDisciplina);
+            File arquivoCSV = new File(disciplina.getNomeDisciplina());
             FileWriter out = new FileWriter(arquivoCSV);
             //deve ter um jeito de otimizar esse parte do codigo(escrever os meta dados)
-            out.write("#" + nomeDisciplina + "\n");
-            out.write("#" + codigo +"\n");
-            out.write("#" + nomeProfessor + "\n");
-            out.write("#" + capacidadeMaxima + "\n");
-
-            // adicionar codigo para arquivar a lista de matriculados
+            out.write("#" + disciplina.getNomeDisciplina() + "\n");
+            out.write("#" + disciplina.getCodigo() +"\n");
+            out.write("#" + disciplina.getNomeProfessor() + "\n");
+            out.write("#" + disciplina.getCapacidadeMaxima() + "\n");
+            for(Aluno i : disciplina.getListaMatriculados()){
+                out.write(i.toCSV());
+            }
             out.close();
 
         }
@@ -97,7 +99,11 @@ public class Disciplina {
     }
 
     public void matricularAluno(Aluno aluno){
-        this.listaMatriculados.add(aluno);
+        //testar depois
+        //ver como o poerador size funciona
+        if(this.listaMatriculados.size() <= this.capacidadeMaxima){
+            this.listaMatriculados.add(aluno);
+        }
     }
 }
 
