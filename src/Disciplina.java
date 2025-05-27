@@ -124,7 +124,6 @@ public class Disciplina {
         if(listaArquivos != null){
             for(File i : listaArquivos){
                 ArrayList<Aluno> listaAlunos = new ArrayList<>();
-                int cont = 0;
                 String nomeDisciplina = "";
                 String codigo = "";
                 // ver se tem problema mais de 1 nome
@@ -132,37 +131,25 @@ public class Disciplina {
                 int capacidadeMaxima = 0;
 
                 try {
-                    String linha;
                     BufferedReader leitor = new BufferedReader(new FileReader(i));
-                    while ((linha =leitor.readLine()) != null){
+                    String linha;
+                    int cont = 0;
+                    while ((linha = leitor.readLine()) != null) {
                         cont++;
-                        if(cont==1){
-                                nomeDisciplina = linha.substring(1);
-                                continue;
-                        }
-                        if(cont == 2){
+                        if (cont == 1) {
+                            nomeDisciplina = linha.substring(1);
+                        } else if (cont == 2) {
                             codigo = linha.substring(1);
-                            continue;
-                        }
-                        if(cont ==3){
+                        } else if (cont == 3) {
                             nomeProfessor = linha.substring(1);
-                            continue;
-                        }
-                        if(cont == 4){
+                        } else if (cont == 4) {
                             capacidadeMaxima = Integer.parseInt(linha.substring(1));
-                            continue;
-                        }
-                        else{
-                            String linha2;
-                            while((linha2 = leitor.readLine()) != null){
-                                //ver se da so pra usar o metodo que eu ja tinha escrito antes aqui, devia ter visto isso antes de escrever :/
-                                //nao sei se precisa do [], talvez o cara tava usando uma versao antiga do java
-                                Aluno aluno = getAluno(linha2);
-                                listaAlunos.add(aluno);
-
-                            }
+                        } else {
+                            Aluno aluno = getAluno(linha);
+                            listaAlunos.add(aluno);
                         }
                     }
+
                     leitor.close();
                     Disciplina disciplina = new Disciplina(nomeDisciplina,codigo, capacidadeMaxima,nomeProfessor, listaAlunos);
                     listaDisciplinas.add(disciplina);
@@ -180,7 +167,6 @@ public class Disciplina {
     //Minha IDE fez isso sem eu querer, ver se funciona normal
     private static Aluno getAluno(String linha) {
         String[] partes = linha.split(",");
-        //ver depois se precisava mesmo declarar as variaveis antes e nao aqui
         //converir se os valores certos estao indo para o lugar certo
         String nomeAluno = partes[0];
         String matricula = partes[1];
