@@ -100,7 +100,7 @@ public class Disciplina {
             out.write("#" + disciplina.getNomeProfessor() + "\n");
             out.write("#" + disciplina.getCapacidadeMaxima() + "\n");
             for(Aluno i : disciplina.getListaMatriculados()){
-                out.write(i.toCSV());
+                out.write(i.toCSV() + "\n");
             }
             out.close();
 
