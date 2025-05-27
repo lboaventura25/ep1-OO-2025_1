@@ -5,9 +5,23 @@ import java.util.List;
 
 import entidades.Disciplina;
 import entidades.Turma;
+import persistencia.BancoDados;
 import persistencia.daoInterfaces.IDsiciplinaDao;
 
 public class DisciplinaDao implements IDsiciplinaDao {
+
+    @Override
+    public void adicionarPreRequisito(Disciplina disciplina, Disciplina disciplinaAdicionada) {
+        if (disciplina != null & disciplinaAdicionada != null) {
+            disciplina.getPreRequisitos().put(disciplinaAdicionada.getCodigo(), disciplinaAdicionada);
+            System.out.println(
+                    "PreRequisito: " + disciplinaAdicionada + "adicionado com sucesso pra disciplina: " + disciplina);
+
+        } else {
+            System.out.println("erro ao adicionar pré-requisito");
+        }
+
+    }
 
     @Override
     public Turma incluir(Turma entidade, HashMap<Integer, Turma> listaManipulada, Disciplina turmaOuDisciplina) {
@@ -40,15 +54,13 @@ public class DisciplinaDao implements IDsiciplinaDao {
     }
 
     @Override
-    public void adicionarPreRequisito(Disciplina disciplina, Disciplina disciplinaAdicionada) {
-        if (disciplina != null & disciplinaAdicionada != null) {
-            disciplina.getPreRequisitos().put(disciplinaAdicionada.getCodigo(), disciplinaAdicionada);
-            System.out.println("PreRequisito: "+disciplinaAdicionada+"adicionado com sucesso pra disciplina: "+disciplina);
-
-        }else {
-            System.out.println("erro ao adicionar pré-requisito");
+    public Disciplina incluirDisciplina(Disciplina disciplina) {
+        if(disciplina != null){
+            BancoDados.getListas().getDisciplinaGeral().put(disciplina.getCodigo(), disciplina);
         }
-       
+        return disciplina;
     }
 
-}
+    }
+
+    

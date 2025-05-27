@@ -14,8 +14,8 @@ public class Main_teste {
 		
 		
 		BancoDados bd = new BancoDados();
-		AlunoDao a = new AlunoDao();
-		a.listarLista(bd.getListas().getAlunosGeral());
+
+
 		
 		
 		Menus menu = new Menus();
