@@ -26,7 +26,7 @@ public class Menu {
             String cursoAluno = leitor.next();
 
             Aluno aluno1 = new Aluno(nomeAluno, matriculaAluno, cursoAluno );
-            Aluno.salvarAluno(aluno1, "teste.csv");
+            Aluno.salvarAluno(aluno1, "listaluno.csv");
             //adicionar sistema de contador para as disciplinas terem numeros
             int cont = 1;
             for(Disciplina i : listaDisciplinas){
@@ -38,7 +38,7 @@ public class Menu {
             listaDisciplinas.get(escolhaDisciplina).matricularAluno(aluno1);
         }
         if (modoAluno == 2){
-            ArrayList<Aluno> alunos = Aluno.listarAlunos("teste.csv");
+            ArrayList<Aluno> alunos = Aluno.listarAlunos("listaluno.csv");
             for(Aluno i : alunos){
                 i.formatado();
             }
