@@ -2,6 +2,7 @@
 
 package persistencia.daoEntidades;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,22 +19,30 @@ public class AlunoDao implements IAlunoDao {
 	@Override // VERIFICADA
 	public Aluno incluir(Aluno aluno, HashMap<Integer, Aluno> listaManipulada, Turma turma) {
 
-		if (listaManipulada != Listas.getAlunosGeral()) {// se a ista for diferente
+		if (listaManipulada != Listas.getAlunosGeral()) {// se a lista for de alguma turma
+			if (listaManipulada.size() < turma.getCapMaxAluno()) {// se tiver vaga na turma ainda,// verificado
+				if (contemPrerequisitos(aluno, turma.getDisciplina())) { // se o aluno tiver os pré requisitos
+					if (verificaDuplicidade(aluno, listaManipulada)) {// se n for uma matricula duplicada
 
-			if (listaManipulada.size() < turma.getCapMaxAluno()) {// se o tiver vaga na turma ainda,// verificado
+						System.out.println("detectada Duplicidade de matricula");
+					} else {// senão, cadastra
+						if (aluno.isEspecial() == true) {// verificado
 
-				if (verificaDuplicidade(aluno, listaManipulada)) {// verifica se já esta cadastrado
-					System.out.println("detectada Duplicidade de matricula");
-				} else {// senão, cadastra
-					if (listaManipulada != null) {// se a lista existir
-						listaManipulada.put(aluno.getMatricula(), aluno);
-						System.out.println("Objeto: " + aluno.getNome() + " adicionado com sucesso na lista ");
-						System.out.println("-----------------");
+							incluirEspecial(aluno, aluno.getMatricula(), listaManipulada, aluno.getContador());
+						} else {
+							System.out.println("aluno não é especial");
+							if (listaManipulada != null) {// se a lista existir
+								listaManipulada.put(aluno.getMatricula(), aluno);
+								System.out.println("Objeto: " + aluno.getNome() + " adicionado com sucesso na lista ");
+								System.out.println("-----------------");
+							}
+						}
+
 					}
-
 				}
+
 			} else {
-				
+
 				System.out.println("A turma já está lotada");
 			}
 
@@ -102,8 +111,10 @@ public class AlunoDao implements IAlunoDao {
 				String velhoNome = elemento.getNome();
 				String velhoCurso = elemento.getCurso();
 				boolean velhoEspecial = elemento.isEspecial();
-				HashMap<String,Disciplina> disciplinaFeitas = elemento.getDisciplinasFeitas();
-				Aluno novoAluno = new Aluno(novaMatricula, velhoNome, velhoCurso, velhoEspecial, disciplinaFeitas);// criei outro aluno
+				HashMap<String, Disciplina> disciplinaFeitas = elemento.getDisciplinasFeitas();
+				Aluno novoAluno = new Aluno(novaMatricula, velhoNome, velhoCurso, velhoEspecial, disciplinaFeitas);// criei
+																													// outro
+																													// aluno
 
 				excluir(elemento.getMatricula(), Listas.getAlunosGeral());// excluindo o antigo elemento com a matricula
 																			// velha.
@@ -183,19 +194,70 @@ public class AlunoDao implements IAlunoDao {
 	}
 
 	@Override
-	public void adicionarDissciplinasFeitas(Aluno aluno, Disciplina disciplina) {
-		if (aluno != null & disciplina!= null) {
+	public void adicionarDisciplinasFeitas(Aluno aluno, Disciplina disciplina) {// verificado
+		if (aluno != null & disciplina != null) {
 			aluno.getDisciplinasFeitas().put(disciplina.getCodigo(), disciplina);
 		}
 	}
 
-	/*
-	 * @Override
-	 * public void verificaCapMax() {
-	 * if
-	 * throw new
-	 * UnsupportedOperationException("Unimplemented method 'verificaCapMax'");
-	 * }
-	 */
+	@Override
+	public boolean contemPrerequisitos(Aluno aluno, Disciplina disciplina) {// verificado
+		boolean verificado = true;
+		for (Map.Entry<String, Disciplina> preRequisito : disciplina.getPreRequisitos().entrySet()) {
+			if (aluno.getDisciplinasFeitas().containsKey(preRequisito.getKey())) {// se em alunoDisciplinas feitas
+				// exitir alguma disciplinas em
+				verificado = true;
+			} else {
+				System.out.println(
+						"este aluno nao tem os pré-requisitos necessários pra ser matriculado nessa disciplina.");
+			}
+			verificado = false;
 
+		}
+		return verificado;
+	}
+
+	@Override // verificado
+	public void trancarSemestre(Aluno aluno) {// devo ver em quais listas ele estiver matriculado e tirar de todas
+		if (aluno != null) {
+			for (Map.Entry<Integer, Turma> turmas : Listas.getTurmasGeral().entrySet()) {// para cada turma em
+																							// listaTurmasGeral
+				if (turmas.getValue().getAlunosPorTurma().containsKey(aluno.getMatricula())) {
+					turmas.getValue().getAlunosPorTurma().remove(aluno.getMatricula());
+				} else {
+					System.out.println(
+							"esse aluno não foi encontrado em nenhuma lista de turmas, ou seja, ele não está matriculado em nehuma turma");
+				}
+			}
+		}
+		System.out.println("-> Aluno: " + aluno.getNome() + " trancou o semstre");
+
+	}
+
+	@Override
+	public void trancarDisciplina(Aluno aluno, Turma turma) {
+		if (aluno != null & turma != null) {
+			if (turma.getAlunosPorTurma().containsKey(aluno.getMatricula())) {
+				turma.getAlunosPorTurma().remove(aluno.getMatricula());
+			} else {
+				System.out.println("-> O aluno:" + aluno.getNome() + " não esta matriculado nessa turma");
+			}
+		}
+
+	}
+
+	@Override
+	public void incluirEspecial(Aluno aluno, Integer chave, HashMap<Integer, Aluno> listamanipulada,
+			int contador) {
+
+		System.out.println(contador);
+		if (contador < 2) {
+			listamanipulada.put(chave, aluno);
+			aluno.setContador(contador += 1);
+			;// cada vez que colocar um vai adicionar um ao contador
+			System.out.println(aluno.getNome() + " adicionado com sucesso");
+		} else {
+			System.out.println("Erro: este aluno já foi adicionado a 2 turmas.");
+		}
+	}
 }

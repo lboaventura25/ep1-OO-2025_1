@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class Listas {
     private static HashMap<Integer, Aluno> alunosGeral = new HashMap<Integer, Aluno>();
     private static HashMap<Integer, Turma> turmasGeral = new HashMap<Integer, Turma>();
-    private static HashMap<Integer, Disciplina> disciplinaGeral = new HashMap<Integer, Disciplina>();
+    private static HashMap<String, Disciplina> disciplinaGeral = new HashMap<String, Disciplina>();
     private static HashMap<Integer, Professor> professoresGeral = new HashMap<Integer, Professor>();
 
     public  static HashMap<Integer, Professor> getProfessoresGeral() {
@@ -22,7 +22,7 @@ public class Listas {
         return turmasGeral;
     }
 
-    public static HashMap<Integer, Disciplina> getDisciplinaGeral() {
+    public static HashMap<String, Disciplina> getDisciplinaGeral() {
         return disciplinaGeral;
     }
 
@@ -38,7 +38,7 @@ public class Listas {
         this.turmasGeral = turmasGeral;
     }
 
-    public void setDisciplinaGeral(HashMap<Integer, Disciplina> disciplinaGeral) {
+    public void setDisciplinaGeral(HashMap<String, Disciplina> disciplinaGeral) {
         this.disciplinaGeral = disciplinaGeral;
     }
 

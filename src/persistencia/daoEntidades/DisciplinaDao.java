@@ -45,10 +45,10 @@ public class DisciplinaDao implements IDsiciplinaDao {
             disciplina.getPreRequisitos().put(disciplinaAdicionada.getCodigo(), disciplinaAdicionada);
             System.out.println("PreRequisito: "+disciplinaAdicionada+"adicionado com sucesso pra disciplina: "+disciplina);
 
+        }else {
+            System.out.println("erro ao adicionar pré-requisito");
         }
-
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adicionarPreRequisito'");
+       
     }
 
 }

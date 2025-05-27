@@ -7,7 +7,7 @@ public class Turma extends Entidade {
 	private static final long serialVerionUID = 1L;
 
 	private Integer codigoDaDisciplina;
-	private String disciplina;
+	private Disciplina disciplina;
 	private String professor;
 	private String semestre;
 	private boolean presencial;
@@ -16,7 +16,7 @@ public class Turma extends Entidade {
 	private int capMaxAluno;
 	private HashMap<Integer, Aluno> alunosPorTurma;// criando um atributo que receba a lista de alunos. -> vou precisar
 
-	public Turma(Integer codigoDaDisciplina, String disciplina, String professor, String semestre, boolean presencial,
+	public Turma(Integer codigoDaDisciplina, Disciplina disciplina, String professor, String semestre, boolean presencial,
 			String sala, String horario, int capMaxAluno, HashMap<Integer, Aluno> alunosPorTurma) {
 		this.codigoDaDisciplina = codigoDaDisciplina;
 		this.disciplina = disciplina;
@@ -33,11 +33,11 @@ public class Turma extends Entidade {
 		return alunosPorTurma;
 	}
 
-	public String getDisciplina() {
+	public Disciplina getDisciplina() {
 		return disciplina;
 	}
 
-	public void setDisciplina(String disciplina) {
+	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
 	}
 

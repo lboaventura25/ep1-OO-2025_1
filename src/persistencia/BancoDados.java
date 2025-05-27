@@ -7,21 +7,26 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
+import java.util.Map;
+
+import entidades.Aluno;
+import entidades.Disciplina;
 import entidades.Entidade;
 import entidades.Listas;
+import entidades.Turma;
 
-public class BancoDados<T extends Entidade> {
+public class BancoDados<T extends Entidade> {// TODO fazer um caminho geral
+
+	/*
+	 * static final String PATH_BD =
+	 * "D:\\faculGabriel\\2°semestre\\Orientação_Objeto\\trabalho_OO\\";
+	 */
+
 	static final String PATH_BD = "C:\\Users\\Gabriel\\eclipse-workspace\\trabalho_OO\\bin\\Persistencia\\";
-	// endereço com barra invertada;
-	// lista que vai ter todos os professores: <id do professor, Professor>
 
-	// TODO como fazer uma lista que tenha os professores por Disciplinas???
+	// endereço com barra invertada;
+
 	static {
-		// chamo o preparar arquivo dentro do bloco estatico? acho que sim né.
-	/* 	carregar("professores.txt");
-		carregar("alunoDB.txt");
-		carregar("turmasDB.txt");
-		carregar("disciplinaDB.txt"); */
 
 		// porque eu preciso desse bloco? n é so chamar o metodo de carregar(ler) e
 		// salvar(escrever) na classe onde eu quero executalas?
@@ -29,24 +34,27 @@ public class BancoDados<T extends Entidade> {
 		// quero isso pras minhas listas,
 		// logo.... ele vai estar aqui
 
-
-		carregar("listas.txt");
+		carregar("alunosGeral.txt");// valida arquivo
+		carregar("turmasGeral.txt");// valida arquivo
+		carregar("professoresGeral.txt");// valida arquivo
+		carregar("DisciplinasGeral.txt");// valida arquivo
 
 	}
 
-	public static void salvar(Listas listas){
+	public void salvar(Listas listas) {
 		persistir(listas);
-	} 
+	}
 
-	private static void persistir( Listas listas) {//TODO verificar ese metodo 
+	private static void persistir(Listas listas) {// verificado
+		// passo a classe ou as listas ??
 		try (ObjectOutputStream oss = new ObjectOutputStream(new FileOutputStream(PATH_BD + "listas.txt"))) {
 
 			oss.writeObject(listas);// escrevendo o arquivo
+			System.out.println("objeto serializado com sucesso");
 		} catch (Exception e) {
 			System.out.println("Erro ao serializar as listas: " + e.getMessage());
 		}
 	}
-
 
 	public static void carregar(String nomeArquivo) {// método pronto
 		preparaArquivo(nomeArquivo);// porque ta chamando isso tudo de coisa ?
@@ -63,21 +71,19 @@ public class BancoDados<T extends Entidade> {
 		}
 	}
 
+	public void ler() {
 
-
-	public static void ler (HashMap<Integer, Object> listaObjetos, String nomeArquivoHash){
-		//TODO conferir esse metodo
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(PATH_BD + nomeArquivoHash))) {
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(PATH_BD + "listas.txt"))) {
 
 			HashMap<Integer, Object> listHashMap = (HashMap<Integer, Object>) ois.readObject();// lendo o arquivo
 
 		} catch (IOException | ClassNotFoundException e) {// se o arquivo n existir criar um arquivo, ele precisa ser
 															// ja// um hashMap? acho que sim né.
-			persistir(null);}
+			persistir(null);
 
-		} 
+		}
 
-	
+	}
 
 	private static boolean validaArquivo(String nomeArquivo) {
 

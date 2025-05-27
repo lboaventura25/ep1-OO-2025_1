@@ -15,6 +15,7 @@ public class TurmaDao implements ITurmaDao {
 
     @Override // VERIFICADA;
     public Turma incluir(Turma entidade, HashMap<Integer, Turma> listaManipulada,Disciplina disciplina) {
+        //TODO verificar pra já colocar na lista da disciplina
         // adicionar em turmas geral e em turmas/disciplinas
         if (listaManipulada.containsKey(entidade.getCodigoDaDisciplina())) {
             System.out.println("-> A turma da dsciplina " + entidade.getDisciplina() + " e codigo "
@@ -60,9 +61,9 @@ public class TurmaDao implements ITurmaDao {
         Turma elemento = obter(chave);
         // alterar algum atributo de turma, menos a lista
         if (Listas.getTurmasGeral() != null) {
-            if (campoAlterado == "Código da disciplina ") {// TODO matricula depois eu faço
+            if (campoAlterado == "Código da disciplina ") {
                 Integer novoCodigo = Integer.parseInt(alteração);
-                String velhaDisciplina = elemento.getDisciplina();
+                Disciplina velhaDisciplina = elemento.getDisciplina();
                 String velhoProfessor = elemento.getProfessor();
                 String velhoSemestre = elemento.getSemestre();
                 boolean presecialidade = elemento.isPresencial();
@@ -84,10 +85,11 @@ public class TurmaDao implements ITurmaDao {
                 }
 
             }
-            if (campoAlterado == "Disciplina") {
-                String novaDisciplina = alteração;
+           /*  if (campoAlterado == "Disciplina") {
+                // TODO verificar esse mtodo depois;
+                Disciplina novaDisciplina = alteração;
                 elemento.setDisciplina(novaDisciplina);
-            }
+            } */
             if (campoAlterado == "Professor") {
                 String novoProfessor = alteração;
                 elemento.setProfessor(novoProfessor);
