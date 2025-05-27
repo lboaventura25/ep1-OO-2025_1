@@ -2,7 +2,7 @@ package servicos;
 
 import java.util.Scanner;
 
-
+import persistencia.BancoDados;
 import persistencia.daoEntidades.AlunoDao;
 import persistencia.daoEntidades.DisciplinaDao;
 import persistencia.daoEntidades.TurmaDao;
@@ -28,6 +28,7 @@ public class Menus {
 		System.out.println("Digite 2 para Modo Disciplina");
 		System.out.println("Digite 3 para Modo Avaliação");
 		System.out.println("Digite 3 para Modo Avaliação");
+		System.out.println("Digite 0 para sair da aplicação");
 		int valor = sc.nextInt();
 		if (valor == 1) {
 			System.out.println("entrou no Modo aluno");
@@ -38,6 +39,9 @@ public class Menus {
 		} else if (valor == 3) {
 			System.out.println("entrou no Modo avaliação");
 
+		}else if (valor == 0) {
+			System.out.println("saiu...");
+			sc.close();
 		} else {
 			System.out.println("Valor digitado invalido");
 		}
@@ -57,7 +61,7 @@ public class Menus {
 		if (valor == 1) {
 			cadAluno();
 		} else if (valor == 2) {
-
+			listarAlunosGeral();
 		} else if (valor == 3) {
 
 		} else if (valor == 4) {
@@ -69,6 +73,10 @@ public class Menus {
 		}
 		sc.close();
 	}
+	public void listarAlunosGeral(){
+		alunoDao.listarLista(BancoDados.getListas().getAlunosGeral());
+	}
+
 
 	public  void cadAluno() {
 		Scanner sc = new Scanner(System.in);
@@ -85,21 +93,20 @@ public class Menus {
 		System.out.println("Insira se o aluno é especial. Digite 1 para 'sim' e 2 para 'não'");
 		int valor = sc.nextInt();
 		boolean especialidade = true;
-		if (valor == 1) {
-			especialidade = true;
-		}
-		if (valor == 2) {
-			especialidade = false;
-		} else {
-			System.out.println("valor digitado invalido");
-			System.out.println("vou te redirecionar para vc tentar denovo ");
-			cadAluno();
+		
+		if(valor < 1 || valor > 2 ){
+		  System.out.println ("Valor Informado inválido");
+		  System.exit(0);
 		}
 
+
+		especialidade = valor == 1? true:false;
+		
+		
 		Aluno alunox = new Aluno(matricula, nomeAluno, curso, especialidade, new HashMap<String,Disciplina>());
-		alunoDao.incluir(alunox, Listas.getAlunosGeral(), null);//adicionando ele em turmas geral 
+		alunoDao.incluir(alunox, BancoDados.getListas().getAlunosGeral(), null);//adicionando ele em turmas geral 
 		
 		
 	}
 	
-}
+} 

@@ -1,14 +1,16 @@
 package entidades;
 // calsse responsável ppor inicializar as listas
 
+import java.io.Serializable;
 import java.util.HashMap;
 /* import java.util.List; */
 
-public class Listas {
-    private static HashMap<Integer, Aluno> alunosGeral = new HashMap<Integer, Aluno>();
-    private static HashMap<Integer, Turma> turmasGeral = new HashMap<Integer, Turma>();
-    private static HashMap<String, Disciplina> disciplinaGeral = new HashMap<String, Disciplina>();
-    private static HashMap<Integer, Professor> professoresGeral = new HashMap<Integer, Professor>();
+public class Listas implements Serializable{
+    private static final long serialVersionUID = 1L;
+	public static HashMap<Integer, Aluno> alunosGeral = new HashMap<Integer, Aluno>();
+    public static HashMap<Integer, Turma> turmasGeral = new HashMap<Integer, Turma>();
+    public static HashMap<String, Disciplina> disciplinaGeral = new HashMap<String, Disciplina>();
+    public static HashMap<Integer, Professor> professoresGeral = new HashMap<Integer, Professor>();
 
     public  static HashMap<Integer, Professor> getProfessoresGeral() {
         return professoresGeral;
@@ -27,19 +29,19 @@ public class Listas {
     }
 
     public void setProfessoresGeral(HashMap<Integer, Professor> professoresGeral) {
-        this.professoresGeral = professoresGeral;
+        Listas.professoresGeral = professoresGeral;
     }
 
     public void setAlunosGeral(HashMap<Integer, Aluno> alunosGeral) {
-        this.alunosGeral = alunosGeral;
+        Listas.alunosGeral = alunosGeral;
     }
 
     public void setTurmasGeral(HashMap<Integer, Turma> turmasGeral) {
-        this.turmasGeral = turmasGeral;
+        Listas.turmasGeral = turmasGeral;
     }
 
     public void setDisciplinaGeral(HashMap<String, Disciplina> disciplinaGeral) {
-        this.disciplinaGeral = disciplinaGeral;
+        Listas.disciplinaGeral = disciplinaGeral;
     }
 
 }

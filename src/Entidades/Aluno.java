@@ -51,6 +51,12 @@ public class Aluno extends Entidade {
 		this.nome = nome;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.getNome();
+	}
+
 	public String getCurso() {
 		return curso;
 	}
@@ -74,5 +80,7 @@ public class Aluno extends Entidade {
 	public void setDisciplinasFeitas(HashMap<String, Disciplina> disciplinasFeitas) {
 		this.disciplinasFeitas = disciplinasFeitas;
 	}
+	
+	
 
 }
