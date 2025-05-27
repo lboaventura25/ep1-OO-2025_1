@@ -17,15 +17,14 @@ public class Main {
                     """);
             Integer opcao = leitor.nextInt();
             if(opcao == 1){
-                Aluno.menuAluno(listaDisciplinas);
+                Menu.menuAluno(listaDisciplinas);
             }
 
             else if (opcao == 2) {
-            Disciplina.menuDisciplina(listaDisciplinas);
+            Menu.menuDisciplina(listaDisciplinas);
             }
             else if(opcao == 3){
                 System.out.println("Arquivando Suas disciplinas");
-                // ter comando para aguardar uns segundos
                 for(Disciplina i : listaDisciplinas){
                     Disciplina.arquivarDisciplina(i);
                 }
