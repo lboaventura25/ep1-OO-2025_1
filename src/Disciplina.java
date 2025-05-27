@@ -71,7 +71,7 @@ public class Disciplina {
     }
 
     public static void listarMatriculados(Disciplina disciplina){
-        for (Aluno alunos : disciplina.listaMatriculados){
+        for (Aluno alunos : disciplina.getListaMatriculados()){
             alunos.formatado();
         }
     }
