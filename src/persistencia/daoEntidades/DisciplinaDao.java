@@ -53,14 +53,23 @@ public class DisciplinaDao implements IDsiciplinaDao {
         throw new UnsupportedOperationException("Unimplemented method 'listarLista'");
     }
 
+    public Disciplina obter(String codigo) {
+        if (BancoDados.getListas().getDisciplinaGeral() != null) {
+            if (BancoDados.getListas().getDisciplinaGeral().containsKey(codigo)) {
+                return BancoDados.getListas().getDisciplinaGeral().get(codigo);
+            }
+        }
+
+        System.out.println("disciplina não foi achada");
+        return null;
+    }
+
     @Override
     public Disciplina incluirDisciplina(Disciplina disciplina) {
-        if(disciplina != null){
+        if (disciplina != null & BancoDados.getListas().getDisciplinaGeral() != null) {
             BancoDados.getListas().getDisciplinaGeral().put(disciplina.getCodigo(), disciplina);
         }
         return disciplina;
     }
 
-    }
-
-    
+}

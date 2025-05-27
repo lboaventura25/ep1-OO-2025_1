@@ -8,6 +8,7 @@ import persistencia.daoEntidades.DisciplinaDao;
 import persistencia.daoEntidades.TurmaDao;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import entidades.Aluno;
 import entidades.Disciplina;
@@ -43,10 +44,9 @@ public class Menus {
 			System.out.println("Modo Avaliação indisponível");
 		} else if (valor == 0) {
 			System.out.println("saiu...");
-			sc.close();
 		} else {
 			System.out.println("Valor digitado invalido");
-			voltarMenu();
+			 voltarMenu(); 
 		}
 
 		sc.close();
@@ -56,8 +56,8 @@ public class Menus {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Entrou no método disciplina");
 		System.out.println("Digite 1 para cadastrar disciplinas");
-		System.out.println("digite 2 pra cadastrar Turma");
-		System.out.println("Digite 3 pra listar turmas");
+		System.out.println("digite 2 pra cadastrar Turma (cadastrar disciplina antes)");
+		System.out.println("Digite 3 pra listar turmas (cadastrar uma turma antes)");
 		System.out.println("Digite 0 pra parar a aplicação");
 		int valor = sc.nextInt();
 
@@ -73,16 +73,16 @@ public class Menus {
 			listarTurmas();
 		} else {
 			System.out.println("Valor digitado inválido");
-			voltarMenu();
+			/* voltarMenu(); */
 		}
 
 		voltarMenuPrincipal();
 
 	}
 
-	public void voltarMenu() {
+ 	public void voltarMenu() {
 		menuPrincipal();
-	}
+	} 
 
 	public void listarTurmas() {
 		turmaDao.listarLista(BancoDados.getListas().getTurmasGeral());
@@ -96,8 +96,9 @@ public class Menus {
 		System.out.println("Insira o código da turma");
 		int codigoDisciplina = sc.nextInt();
 
-		System.out.println("Insira a disciplina que ela vai fazer parte");
-		String disciplina = sc.next();// TODO trnaformar pra disciplina
+		System.out.println("Insira o código da disciplina que ela vai fazer parte");
+		String disciplina = sc.next();
+		Disciplina escolhidaX = disciplinadao.obter(disciplina);
 
 		System.out.println("Digite o nome do professor que será dessa turma");
 		String professor = sc.next();
@@ -125,7 +126,8 @@ public class Menus {
 		System.out.println("digite a capacidade da turma. É válido somente numeros inteiros");
 		int capMax = sc.nextInt();
 
-		Turma turmax = new Turma(codigoDisciplina, null, professor, semestre, presencialidade, sala, horario, capMax,
+		Turma turmax = new Turma(codigoDisciplina, escolhidaX, professor, semestre, presencialidade, sala, horario,
+				capMax,
 				new HashMap<Integer, Aluno>());
 
 		turmaDao.incluir(turmax, BancoDados.getListas().getTurmasGeral(), null);
@@ -146,12 +148,21 @@ public class Menus {
 		System.out.println("digite a quantidade de horas que é a disicplina");
 		int horaa = sc.nextInt();
 
-		Disciplina disciplinax = new Disciplina(codDisciplina, codDisciplina, horaa, new HashMap<String, Disciplina>(),
+		Disciplina disciplinax = new Disciplina(nome, codDisciplina, horaa, new HashMap<String, Disciplina>(),
 				new HashMap<Integer, Turma>());
 
 		disciplinadao.incluirDisciplina(disciplinax);
 
-		voltarMenuPrincipal();
+		System.out.println("essa disciplina tem pré requisito? 1) SIM 2) NÃO");
+		int valorY = sc.nextInt();
+		if (valorY == 1) {
+			System.out.println("digite qual será o pré requisito pra essa dsciplina");
+			String codString = sc.next();
+			Disciplina escolhidaM = disciplinadao.obter(codString);
+			disciplinadao.adicionarPreRequisito(disciplinax, escolhidaM);
+		}
+
+		
 	}
 
 	public void modoAlunoI() {
@@ -159,7 +170,7 @@ public class Menus {
 
 		System.out.println("Digite 1 Para cadastrar Aluno");
 		System.out.println("Digite 2 Para Listar todos os Alunos");
-		System.out.println("Digite 3 Para Matricular aluno em alguma turma");
+		System.out.println("Digite 3 Para Matricular aluno em alguma turma (é necessario cirar turma antes)");
 		System.out.println("Digite 4 Para a aba de trancamento");
 		System.out.println("Digite 9 para voltar");
 		int valor = sc.nextInt();
@@ -177,10 +188,10 @@ public class Menus {
 			menuPrincipal();
 		} else {
 			System.out.println("Valor digitado inválido");
-			voltarMenu();
+			/* voltarMenu(); */
 		}
 		sc.close();
-		voltarMenuPrincipal();
+		 voltarMenuPrincipal(); 
 	}
 
 	private void trancamento() {
@@ -196,14 +207,17 @@ public class Menus {
 
 		} else {
 			System.out.println("valor inválido, volte e tente novamente");
-			voltarMenu();
+			/* voltarMenu(); */
 
 		}
-		voltarMenuPrincipal();
+		 voltarMenuPrincipal(); 
 	}
 
 	public void matriculaAluno() {
-		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Digite a matricula do aluno que vc deseja matricular");
+
+		alunoDao.incluir(null, null, null);
 		// TODO fazer esse daqui
 		voltarMenuPrincipal();
 	}
@@ -240,10 +254,24 @@ public class Menus {
 		Aluno alunox = new Aluno(matricula, nomeAluno, curso, especialidade, new HashMap<String, Disciplina>());
 		alunoDao.incluir(alunox, BancoDados.getListas().getAlunosGeral(), null);// adicionando ele em turmas geral
 
-		voltarMenuPrincipal();
+		System.out.println("O aluno matriculado ja fez alguma disciplina? 1)SIM 2)NÃO");
+		int numero = sc.nextInt();
+		if (numero == 1) {
+			System.out.println("digite  a matricula do aluno");
+			int matriculaX = sc.nextInt();
+			Aluno escolhido = alunoDao.obter(matriculaX);
+
+			System.out.println("digite o codigo da disciplina que ele fez");
+			String codigoString = sc.next();
+
+			Disciplina escolhida = disciplinadao.obter(codigoString);
+			alunoDao.adicionarDisciplinasFeitas(escolhido, escolhida);
+
+		}
+		 voltarMenuPrincipal(); 
 	}
 
-	public void voltarMenuPrincipal() {
+	 public void voltarMenuPrincipal() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Deseja voltar ao menu principal?");
 		System.out.println("1 para sim ");
@@ -254,6 +282,6 @@ public class Menus {
 		} else {
 			System.out.println("tchau");
 		}
-	}
+	} 
 
 }

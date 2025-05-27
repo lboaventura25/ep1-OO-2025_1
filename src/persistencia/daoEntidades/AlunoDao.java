@@ -11,6 +11,7 @@ import entidades.Listas;
 import entidades.Turma;
 import entidades.Aluno;
 import entidades.Disciplina;
+import persistencia.BancoDados;
 import persistencia.daoInterfaces.IAlunoDao;
 
 public class AlunoDao implements IAlunoDao {
@@ -19,7 +20,7 @@ public class AlunoDao implements IAlunoDao {
 	@Override // VERIFICADA
 	public Aluno incluir(Aluno aluno, HashMap<Integer, Aluno> listaManipulada, Turma turma) {
 
-		if (listaManipulada != Listas.getAlunosGeral()) {// se a lista for de alguma turma
+		if (listaManipulada != BancoDados.getListas().getAlunosGeral()) {// se a lista for de alguma turma
 			if (listaManipulada.size() < turma.getCapMaxAluno()) {// se tiver vaga na turma ainda,// verificado
 				if (contemPrerequisitos(aluno, turma.getDisciplina())) { // se o aluno tiver os pré requisitos
 					if (verificaDuplicidade(aluno, listaManipulada)) {// se n for uma matricula duplicada
@@ -104,7 +105,7 @@ public class AlunoDao implements IAlunoDao {
 
 		Aluno elemento = obter(chave);// metodo que acha o aluno pela a chave;
 
-		if (Listas.getAlunosGeral().containsValue(obter(chave))) {// se a lista conter algum valor desse
+		if (BancoDados.getListas().getAlunosGeral().containsValue(obter(chave))) {// se a lista conter algum valor desse
 			if (campoAlterado == "Matricula") {// retorno o velho e o novo
 				System.out.println("tentando alterar matricula");
 				Integer novaMatricula = Integer.parseInt(alteração);// transforma a string em integer
@@ -116,9 +117,9 @@ public class AlunoDao implements IAlunoDao {
 																													// outro
 																													// aluno
 
-				excluir(elemento.getMatricula(), Listas.getAlunosGeral());// excluindo o antigo elemento com a matricula
+				excluir(elemento.getMatricula(), BancoDados.getListas().getAlunosGeral());// excluindo o antigo elemento com a matricula
 																			// velha.
-				incluir(novoAluno, Listas.getAlunosGeral(), null);// adicionando novo aluno na lista
+				incluir(novoAluno, BancoDados.getListas().getAlunosGeral(), null);// adicionando novo aluno na lista
 				System.out.println("matriucula alterada com sucesso");
 				return elemento;
 			}
@@ -183,9 +184,9 @@ public class AlunoDao implements IAlunoDao {
 
 	@Override // VERIFICADO
 	public Aluno obter(Integer chave) {// buscando aluno no alunos geral e exibindo ele
-		if (Listas.getAlunosGeral().containsKey(chave)) {
-			System.out.println(" achou " + Listas.getAlunosGeral().get(chave));
-			return Listas.getAlunosGeral().get(chave);
+		if (BancoDados.getListas().getAlunosGeral().containsKey(chave)) {
+			System.out.println(" achou " + BancoDados.getListas().getAlunosGeral().get(chave));
+			return BancoDados.getListas().getAlunosGeral().get(chave);
 
 		} else {
 			System.out.println("o aluno vinculado a esta maticula nao esta nessa lista");
@@ -220,7 +221,7 @@ public class AlunoDao implements IAlunoDao {
 	@Override // verificado
 	public void trancarSemestre(Aluno aluno) {// devo ver em quais listas ele estiver matriculado e tirar de todas
 		if (aluno != null) {
-			for (Map.Entry<Integer, Turma> turmas : Listas.getTurmasGeral().entrySet()) {// para cada turma em
+			for (Map.Entry<Integer, Turma> turmas : BancoDados.getListas().getTurmasGeral().entrySet()) {// para cada turma em
 																							// listaTurmasGeral
 				if (turmas.getValue().getAlunosPorTurma().containsKey(aluno.getMatricula())) {
 					turmas.getValue().getAlunosPorTurma().remove(aluno.getMatricula());
