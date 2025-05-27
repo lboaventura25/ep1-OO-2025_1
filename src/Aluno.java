@@ -115,11 +115,12 @@ public class Aluno {
                 Aluno aluno1 = new Aluno(nomeAluno, matriculaAluno, cursoAluno );
                 Aluno.salvarAluno(aluno1, "teste.csv");
                 //adicionar sistema de contador para as disciplinas terem numeros
+                int cont = 1;
                 for(Disciplina i : listaDisciplinas){
-                    i.formatado();
+                    i.formatado(cont);
                 }
                 System.out.println("Selecione a disciplina que quer matricula-lo:");
-                int escolhaDisciplina = leitor.nextInt();
+                int escolhaDisciplina = leitor.nextInt() - 1;
                 listaDisciplinas.get(escolhaDisciplina).matricularAluno(aluno1);
             }
             if (modoAluno == 2){
