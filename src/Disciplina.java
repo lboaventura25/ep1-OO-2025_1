@@ -65,6 +65,11 @@ public class Disciplina {
         System.out.printf("Nome da disciplina: %s, Nome do discente:%s, Codigo da disciplina:%s \n", this.nomeDisciplina, this.nomeProfessor, this.codigo);
     }
 
+
+    public void formatado(int cont){
+        System.out.printf("%d - Nome da Disciplina: %s, nome do discente:%s, codigo da disciplina:%s \n", cont, this.nomeDisciplina, this.nomeProfessor,this.codigo);
+    }
+
     public static void listarMatriculados(Disciplina disciplina){
         for (Aluno alunos : disciplina.listaMatriculados){
             alunos.formatado();
