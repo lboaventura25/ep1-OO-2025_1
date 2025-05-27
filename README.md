@@ -12,21 +12,30 @@ O enunciado do trabalho pode ser encontrado aqui:
 - **Nome completo:** Pedro Henrique Galdino de Andrade Wollmann
 - **Matrícula:** 241040341
 - **Curso:** Engenharias
-- **Turma:** [Preencher aqui]
-
 ---
 
 ## Instruções para Compilação e Execução
 
 1. **Compilação:**  
-   [Descrever aqui como compilar o projeto. Exemplo: `javac Main.java` ou o script usado]
-
+   - No diretorio raiz
+      ```javac *.java```
 2. **Execução:**  
-   [Descrever aqui como executar o projeto. Exemplo: `java Main` ou o script usado]
-
+      ````java Main````
 3. **Estrutura de Pastas:**  
-   [Descrever aqui as principais pastas do projeto]
+```css
+orientacao-a-objetos/
+├── src/
+│   ├── Aluno.java
+│   ├── AlunoEspecial.java
+│   ├── Disciplina.java
+│   ├── Main.java
+│   └── Menu.java
+├── disciplinas/             
+├── prints/                
+├── teste.csv                 
+└── README.md
 
+```
 3. **Versão do JAVA utilizada:**  
    Neste projeto foi utilizada a versão 24 do java
 ---
@@ -40,13 +49,16 @@ O enunciado do trabalho pode ser encontrado aqui:
 ## Prints da Execução
 
 1. Menu Principal:  
-   ![Inserir Print 1](caminho/do/print1.png)
+   ![Menu principal](prints/menu_principal.png)
+---
+2. Cadastro de disciplina:
 
-2. Cadastro de Aluno:  
-   ![Inserir Print 2](caminho/do/print2.png)
+![Menu cadastro disciplina](prints/cadastro_disciplina.png)
+3. Cadastro de Aluno:  
+   ![Menu cadastro do aluno](prints/cadastro_aluno.png)
 
-3. Relatório de Frequência/Notas:  
-   ![Inserir Print 3](caminho/do/print3.png)
+
+
 
 ---
 
@@ -64,10 +76,11 @@ O enunciado do trabalho pode ser encontrado aqui:
 
 ---
 
-## Observações (Extras ou Dificuldades)
+## Observações (Dificuldades)
 
 - Não foi utilizada nenhuma IA para a ajuda da realização do trabalho, entanto foram utilizados sites como StackOverflow e videos didaticos no youtube
-- 
+- Gerenciar arquivos foi algo muito novo para mim, e foi complicado aprender como escrever e ler informações desses arquivos
+
 
 ---
 
