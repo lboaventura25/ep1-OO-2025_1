@@ -42,8 +42,7 @@ orientacao-a-objetos/
 
 ## Vídeo de Demonstração
 
-- [Inserir o link para o vídeo no YouTube/Drive aqui]
-
+https://www.youtube.com/watch?v=5z6ZX5arFvU
 ---
 
 ## Prints da Execução
