@@ -1,0 +1,75 @@
+package persistencia.daoEntidades;
+
+import java.util.HashMap;
+import java.util.List;
+
+import entidades.Disciplina;
+import entidades.Turma;
+import persistencia.BancoDados;
+import persistencia.daoInterfaces.IDsiciplinaDao;
+
+public class DisciplinaDao implements IDsiciplinaDao {
+
+    @Override
+    public void adicionarPreRequisito(Disciplina disciplina, Disciplina disciplinaAdicionada) {
+        if (disciplina != null & disciplinaAdicionada != null) {
+            disciplina.getPreRequisitos().put(disciplinaAdicionada.getCodigo(), disciplinaAdicionada);
+            System.out.println(
+                    "PreRequisito: " + disciplinaAdicionada + "adicionado com sucesso pra disciplina: " + disciplina);
+
+        } else {
+            System.out.println("erro ao adicionar pré-requisito");
+        }
+
+    }
+
+    @Override
+    public Turma incluir(Turma entidade, HashMap<Integer, Turma> listaManipulada, Disciplina turmaOuDisciplina) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'incluir'");
+    }
+
+    @Override
+    public boolean excluir(Integer key, HashMap<Integer, Turma> listaManipulada) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'excluir'");
+    }
+
+    @Override
+    public Turma alterar(Integer chave, String campoAlterado, String alteração) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'alterar'");
+    }
+
+    @Override
+    public Turma obter(Integer chave) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'obter'");
+    }
+
+    @Override
+    public List<Turma> listarLista(HashMap<Integer, Turma> listaExibida) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'listarLista'");
+    }
+
+    public Disciplina obter(String codigo) {
+        if (BancoDados.getListas().getDisciplinaGeral() != null) {
+            if (BancoDados.getListas().getDisciplinaGeral().containsKey(codigo)) {
+                return BancoDados.getListas().getDisciplinaGeral().get(codigo);
+            }
+        }
+
+        System.out.println("disciplina não foi achada");
+        return null;
+    }
+
+    @Override
+    public Disciplina incluirDisciplina(Disciplina disciplina) {
+        if (disciplina != null & BancoDados.getListas().getDisciplinaGeral() != null) {
+            BancoDados.getListas().getDisciplinaGeral().put(disciplina.getCodigo(), disciplina);
+        }
+        return disciplina;
+    }
+
+}
