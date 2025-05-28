@@ -9,42 +9,47 @@ O enunciado do trabalho pode ser encontrado aqui:
 
 ## Dados do Aluno
 
-- **Nome completo:** [Preencher aqui]
-- **Matrícula:** [Preencher aqui]
-- **Curso:** [Preencher aqui]
-- **Turma:** [Preencher aqui]
+- **Nome completo:** Gabriel vieira octacilio pinheiro 
+- **Matrícula:** [242004706]
+- **Curso:** [Engenharias]
+- **Turma:** [06]
 
 ---
 
 ## Instruções para Compilação e Execução
 
 1. **Compilação:**  
-   [Descrever aqui como compilar o projeto. Exemplo: `javac Main.java` ou o script usado]
+   [A principio só descompactar ele no vs que é mais lúdico e rezar pra funcionar]
+    
 
 2. **Execução:**  
-   [Descrever aqui como executar o projeto. Exemplo: `java Main` ou o script usado]
+   [quando executar o main ele vai chamar o menu que vai chamar os metodos pra cada funcionalidade desejada]
+    
 
 3. **Estrutura de Pastas:**  
    é recomendado descompactar na pasta C:\Temp
 
 3. **Versão do JAVA utilizada:**  
-   [Descrever aqui como versão do JAVA utilizada no projeto. Sugestão: `java 21`]
+   [Tenta com a 21 se nao for c a 21 tenta com a 17]
+
 
 ---
 
 ## Vídeo de Demonstração
 
 - [Inserir o link para o vídeo no YouTube/Drive aqui]
+Não vai ter vídeo
 
 ---
 
 ## Prints da Execução
 
 1. Menu Principal:  
-   ![Inserir Print 1](caminho/do/print1.png)
+   ![![alt text](image.png)](caminho/do/print1.png)
+   Vou ver se consigo arranjar alguns prints 
 
 2. Cadastro de Aluno:  
-   ![Inserir Print 2](caminho/do/print2.png)
+   ![![alt text](image-1.png)](caminho/do/print2.png)
 
 3. Relatório de Frequência/Notas:  
    ![Inserir Print 3](caminho/do/print3.png)
@@ -67,11 +72,16 @@ O enunciado do trabalho pode ser encontrado aqui:
 
 ## Observações (Extras ou Dificuldades)
 
-- [Espaço para o aluno comentar qualquer funcionalidade extra que implementou, dificuldades enfrentadas, ou considerações importantes.]
+- Alem do mal gerenciamento do tempo, em questão de difilcudades tecnincas eu acredito que a falta do conhecimento sobre os principios de OO me prejudicou bastante. A falta de estruturação do projeto como um todo me prejudicou pq fez com que eu fizesse de um jeito, pra depois apagar e fazer denovo, se eu tivesse decidido, parado pra pensar no começo teria me ajudade mais. 
+   Tecnologias que eu nem fazia ideia de mexer eu tive dificuldade, como por exeplo a serialização de objetos.
+   o menu via interface tbm, pensei que seria facil mas acabou sendo bem difícil. 
+   Mas acredito que oque fez com que eu entregasse esse trabalho podre foi o mal gerenciamneto de tempo mesmo, foquei em outras coisas e dei pouca prioridade pro projeto.
+   Dificuldades próprias da linguagem java tbm, nada muito simples pq isso eu entendia mas coissinhas pequenas como por exemplo a forte tipagem de java me atrapalhou um pouco, não sabia como lidar com ela. 
+
 
 ---
 
 ## Contato
 
 - [Opcional: E-mail pessoal do aluno.]
-   gabriel.otacio135@gmail.com
+   gabriel.otacilio135@gmail.com
